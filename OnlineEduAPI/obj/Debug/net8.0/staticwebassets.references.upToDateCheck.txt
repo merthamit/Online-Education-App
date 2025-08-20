@@ -141,3 +141,15 @@ C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.Web
 C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\obj\Debug\net8.0\staticwebassets.build.json

@@ -69,6 +69,8 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateBlog(UpdateBlogDto updateBlogDto)
         {
+            var userId = _tokenService.GetUserId;
+            updateBlogDto.WriterId = userId;
             await _client.PutAsJsonAsync("blogs", updateBlogDto);
             return RedirectToAction(nameof(Index));
         }

@@ -19,7 +19,7 @@
                     <div class="single-team mb-30">
                         <div class="team-img">
 
-                            <img src="@item.ImageUrl" alt="">
+                            <img src="@(item.ImageUrl ?? "https://cdn-icons-png.flaticon.com/512/6621/6621964.png")" alt="">
                             <!-- Blog Social -->
                             <ul class="team-social">
                                 @foreach (var social in item.TeacherSocials)
