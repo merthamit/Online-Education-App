@@ -1,3 +1,107 @@
+Kullanılan Teknolojiler
+
+ASP.NET Core 8.0 (Web API & MVC)
+
+Entity Framework Core (Code First yaklaşımı)
+
+SQL Server
+
+LINQ
+
+AutoMapper
+
+FluentValidation
+
+HTML, CSS, JavaScript, Bootstrap
+
+Identity (Kullanıcı, rol, yetkilendirme)
+
+Jwt Bearer Authentication
+
+Dependency Injection
+
+HttpClient & Named HttpClient
+
+Teknik Özellikler
+
+N Katmanlı Mimari Yapısı
+
+Repository & Generic Repository Tasarım Deseni
+
+Generic Service & Manager Yapısı
+
+DTO kullanımı (UI ile API arasında veri transferi)
+
+Automapper ile nesne eşleme
+
+Identity ile kullanıcı ve rol işlemleri
+
+Jwt Token tabanlı Authentication & Authorization
+
+Çoklu Alan (Area) yapısı (Admin, Teacher, Student, vs.)
+
+ViewComponent kullanımı
+
+Lazy Loading (EF Core)
+
+Sitenin Öne Çıkan Özellikleri
+
+Admin Paneli & Öğretmen Paneli & Öğrenci Paneli
+
+Identity ile kayıt olma ve giriş yapma
+
+Roller & Yetkilendirme ile erişim kısıtlamaları
+
+CRUD İşlemleri (Blog, Kurs, Kategori, Banner, Mesaj, Abonelik vb.)
+
+Şifremi Unuttum özelliği
+
+Arama işlemleri
+
+Token bilgisi üzerinden kullanıcı kimliği okuma
+
+Admin Paneli Özellikleri
+
+İstatistikleri görme
+
+Profil düzenleme işlemleri
+
+Haber & Blog & Kurs gibi tüm içeriklerde CRUD işlemleri
+
+Menü ve alt menü isimlerini değiştirebilme
+
+Kullanıcılara rol atama ve yetkilendirme
+
+Öğretmen Paneli Özellikleri
+
+Kendi kurslarını yönetebilme (CRUD)
+
+Kurslara video ekleyebilme
+
+Sosyal medya linkleri ekleyebilme
+
+Profil düzenleme işlemleri
+
+Öğrenci Paneli Özellikleri
+
+Kurs kayıt olma & kursları görüntüleme
+
+İstatistikleri görme
+
+Profil düzenleme işlemleri
+
+CV yükleme & güncelleme işlemleri
+
+
+
+
+
+
+
+
+
+
+
 ![Screenshot_10](https://github.com/user-attachments/assets/4afa4ea9-e88b-4612-a272-1815a77a4515)
 ![Screenshot_9](https://github.com/user-attachments/assets/71441628-5d26-4e04-aa07-8e75cd15610d)
 ![Screenshot_8](https://github.com/user-attachments/assets/e8cded9e-8b5e-4a38-ab20-286301d07057)
