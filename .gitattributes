@@ -1,3 +1,10 @@
-git add .gitattributes
-git commit -m "Fix linguist language stats for GitHub"
-git push
+# C#'ı ana dil olarak say
+*.cs linguist-detectable=true
+*.cs linguist-language=C#
+
+# HTML, CSS, JS dosyalarını sayma
+*.html linguist-detectable=false
+*.css linguist-detectable=false
+*.js linguist-detectable=false
+*.scss linguist-detectable=false
+*.php linguist-detectable=false
