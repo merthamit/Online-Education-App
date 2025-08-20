@@ -1,0 +1,56 @@
+﻿@model List<ResultCourseRegisterDto>
+@{
+    ViewData["Title"] = "Kayıtlı Olduğum Kurslar";
+    Layout = "~/Areas/Student/Views/StudentLayout/Index.cshtml";
+}
+
+
+
+@{
+    int count = 0;
+}
+<table class="table table-hover">
+
+    <tr>
+
+        <th>#</th>
+        <th>Resim</th>
+        <th>Kurs Adı</th>
+        <th>Eğitmen</th>
+        <th>Kategori</th>
+
+
+        <th></th>
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <th><img src="@item.Course.ImageUrl" style="height:75px;width:75px" /></th>
+            <td>@item.Course.CourseName</td>
+            <td>@item.Course.AppUser.FirstName @item.Course.AppUser.LastName</td>
+            <td>@item.Course.Category.CategoryName </td>
+
+            <td>
+
+
+                <a asp-action="CourseVideos" asp-controller="CourseRegister" asp-area="Student" asp-route-id="@item.CourseId" class="btn btn-outline-info">Kurs Videoları</a>
+
+
+
+            </td>
+
+        </tr>
+    }
+</table>
+
+<br />
+<a asp-action="RegisterCourse" asp-controller="CourseRegister" asp-area="Student" class="btn btn-outline-primary">Yeni Kursa Kaydol</a>
+
+
+
+

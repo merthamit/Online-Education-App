@@ -1,0 +1,19 @@
+﻿using OnlineEdu.Entity.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OnlineEdu.Business.Abstract
+{
+    public interface IBlogService : IGenericService<Blog>
+    {
+        List<Blog> TGetBlogsWithCategories();
+        List<Blog> TGetLast4BlogsWithCategories();
+        List<Blog> TGetBlogByWriterId(int id);
+        Blog TGetBlogWithCategories(int id);
+        List<Blog> TGetBlogsWithCategoriesByCategoryId(int id);
+
+    }
+}

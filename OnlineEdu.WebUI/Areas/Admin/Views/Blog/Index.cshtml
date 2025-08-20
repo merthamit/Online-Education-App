@@ -1,0 +1,62 @@
+﻿@model List<ResultBlogDto>
+@{
+    ViewData["Title"] = "Blog Page";
+    Layout = "_AdminLayout";
+}
+@{
+    int count = 0;
+}
+<table class="table table-hover">
+    <tr>
+
+        <th>#</th>
+        <th>Title</th>
+        <th>ImageUrl</th>
+        <th>BlogDate</th>
+        <th>BlogCategoryId</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <th>@item.Title</th>
+            <th><img src="@item.ImageUrl" style="width:75px; height:75px;" /></th>
+            <th>@item.BlogDate</th>
+            <th>@item.BlogCategory.Name</th>
+            <td>
+                <button onclick="deleteBlog(@item.BlogId)" class="btn btn-outline-danger">Sil</button>
+                <a asp-action="UpdateBlog" asp-controller="Blog" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.BlogId">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<a asp-action="CreateBlog" asp-controller="Blog" asp-area="Admin" class="btn btn-outline-primary">Yeni Hakkımda Ekle</a>
+<script>
+
+    function deleteBlog(id){
+        Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+            window.location.href = "/Admin/Blog/DeleteBlog/" + id
+              }
+        });
+    }
+
+
+</script>

@@ -1,0 +1,16 @@
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\bin\Debug\net8.0\OnlineEdu.DTO.deps.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\bin\Debug\net8.0\OnlineEdu.DTO.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\bin\Debug\net8.0\OnlineEdu.DTO.pdb
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\bin\Debug\net8.0\OnlineEdu.Entity.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\bin\Debug\net8.0\OnlineEdu.Entity.pdb
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.csproj.AssemblyReference.cache
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.AssemblyInfoInputs.cache
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.AssemblyInfo.cs
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.csproj.CoreCompileInputs.cache
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.sourcelink.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEd.9E38B2D2.Up2Date
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\refint\OnlineEdu.DTO.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\OnlineEdu.DTO.pdb
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DTO\obj\Debug\net8.0\ref\OnlineEdu.DTO.dll

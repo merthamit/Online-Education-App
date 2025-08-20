@@ -1,0 +1,60 @@
+﻿@model List<ResultSocialMediaDto>
+@{
+    ViewData["Title"] = "Social Media Page";
+    Layout = "_AdminLayout";
+}
+@{
+    int count = 0;
+}
+<table class="table table-hover">
+    <tr>
+
+        <th>#</th>
+        <th>Title</th>
+        <th>Icon</th>
+        <th>Url</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <th>@item.Title</th>
+            <th>@item.Icon</th>
+            <th>@item.Url</th>
+            <td>
+                <button onclick="deleteSocialMedia(@item.SocialMediaId)" class="btn btn-outline-danger">Sil</button>
+                <a asp-action="UpdateSocialMedia" asp-controller="SocialMedia" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.SocialMediaId">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<a asp-action="CreateSocialMedia" asp-controller="SocialMedia" asp-area="Admin" class="btn btn-outline-primary">Yeni Social Media Ekle</a>
+<script>
+
+    function deleteSocialMedia(id){
+        Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+            window.location.href = "/Admin/SocialMedia/DeleteSocialMedia/" + id
+              }
+        });
+    }
+
+
+</script>

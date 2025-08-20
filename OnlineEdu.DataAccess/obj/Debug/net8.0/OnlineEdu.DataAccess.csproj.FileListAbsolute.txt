@@ -1,0 +1,16 @@
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\bin\Debug\net8.0\OnlineEdu.DataAccess.deps.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\bin\Debug\net8.0\OnlineEdu.DataAccess.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\bin\Debug\net8.0\OnlineEdu.DataAccess.pdb
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\bin\Debug\net8.0\OnlineEdu.Entity.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\bin\Debug\net8.0\OnlineEdu.Entity.pdb
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.csproj.AssemblyReference.cache
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.AssemblyInfoInputs.cache
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.AssemblyInfo.cs
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.sourcelink.json
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEd.EAC0992C.Up2Date
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\refint\OnlineEdu.DataAccess.dll
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\OnlineEdu.DataAccess.pdb
+C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.DataAccess\obj\Debug\net8.0\ref\OnlineEdu.DataAccess.dll

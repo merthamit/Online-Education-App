@@ -1,0 +1,417 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = OnlineEdu.WebUI
+build_property.RootNamespace = OnlineEdu.WebUI
+build_property.ProjectDir = C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\merth\OneDrive\Masaüstü\2025 Yazılım\YoutubeOnlineEdu\OnlineEdu.WebUI
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/About/CreateAbout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRcQ3JlYXRlQWJvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/About/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/About/UpdateAbout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWJvdXRcVXBkYXRlQWJvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Banner/CreateBanner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXENyZWF0ZUJhbm5lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Banner/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Banner/UpdateBanner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFubmVyXFVwZGF0ZUJhbm5lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/BlogCategory/CreateBlogCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ0NhdGVnb3J5XENyZWF0ZUJsb2dDYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/BlogCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ0NhdGVnb3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/BlogCategory/UpdateBlogCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ0NhdGVnb3J5XFVwZGF0ZUJsb2dDYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Blog/CreateBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ1xDcmVhdGVCbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Blog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Blog/UpdateBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmxvZ1xVcGRhdGVCbG9nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Contact/CreateContact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGFjdFxDcmVhdGVDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Contact/UpdateContact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGFjdFxVcGRhdGVDb250YWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/CourseCategory/CreateCourseCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlQ2F0ZWdvcnlcQ3JlYXRlQ291cnNlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/CourseCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/CourseCategory/UpdateCourseCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlQ2F0ZWdvcnlcVXBkYXRlQ291cnNlQ2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Course/CreateCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlXENyZWF0ZUNvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Course/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Course/UpdateCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ291cnNlXFVwZGF0ZUNvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Message/CreateMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWVzc2FnZVxDcmVhdGVNZXNzYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Message/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWVzc2FnZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Message/MessageDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWVzc2FnZVxNZXNzYWdlRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Message/UpdateMessage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWVzc2FnZVxVcGRhdGVNZXNzYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/RoleAssign/AssignRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZUFzc2lnblxBc3NpZ25Sb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/RoleAssign/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZUFzc2lnblxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Role/CreateRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxDcmVhdGVSb2xlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Role/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUm9sZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/SocialMedia/CreateSocialMedia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU29jaWFsTWVkaWFcQ3JlYXRlU29jaWFsTWVkaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/SocialMedia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU29jaWFsTWVkaWFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/SocialMedia/UpdateSocialMedia.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU29jaWFsTWVkaWFcVXBkYXRlU29jaWFsTWVkaWEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/StudentList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3R1ZGVudExpc3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Subscriber/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU3Vic2NyaWJlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/TeacherList/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVhY2hlckxpc3RcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Testimonial/CreateTestimonial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVzdGltb25pYWxcQ3JlYXRlVGVzdGltb25pYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Testimonial/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVzdGltb25pYWxcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/Testimonial/UpdateTestimonial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVGVzdGltb25pYWxcVXBkYXRlVGVzdGltb25pYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Student/Views/CourseRegister/CourseVideos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xDb3Vyc2VSZWdpc3RlclxDb3Vyc2VWaWRlb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Student/Views/CourseRegister/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xDb3Vyc2VSZWdpc3RlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Student/Views/CourseRegister/RegisterCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xDb3Vyc2VSZWdpc3RlclxSZWdpc3RlckNvdXJzZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Student/Views/StudentLayout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xTdHVkZW50TGF5b3V0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Student/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcU3R1ZGVudFxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyBlog/CreateBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUJsb2dcQ3JlYXRlQmxvZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyBlog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUJsb2dcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyBlog/UpdateBlog.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUJsb2dcVXBkYXRlQmxvZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyCourse/CourseVideos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUNvdXJzZVxDb3Vyc2VWaWRlb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyCourse/CreateCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUNvdXJzZVxDcmVhdGVDb3Vyc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyCourse/CreateVideo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUNvdXJzZVxDcmVhdGVWaWRlby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyCourse/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUNvdXJzZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MyCourse/UpdateCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeUNvdXJzZVxVcGRhdGVDb3Vyc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MySocialMedia/CreateTeacherSocial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeVNvY2lhbE1lZGlhXENyZWF0ZVRlYWNoZXJTb2NpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MySocialMedia/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeVNvY2lhbE1lZGlhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/MySocialMedia/UpdateTeacherSocial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xNeVNvY2lhbE1lZGlhXFVwZGF0ZVRlYWNoZXJTb2NpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/TeacherLayout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xUZWFjaGVyTGF5b3V0XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Areas/Teacher/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVGVhY2hlclxWaWV3c1xfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/About/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Blog/BlogDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xCbG9nRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Blog/BlogsByCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xCbG9nc0J5Q2F0ZWdvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Blog/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvZ1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Contact/ContactMap.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxDb250YWN0TWFwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Course/GetCoursesByCategoryId.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEdldENvdXJzZXNCeUNhdGVnb3J5SWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Course/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/ErrorPage/AccesDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JQYWdlXEFjY2VzRGVuaWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/ErrorPage/NotFound404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JQYWdlXE5vdEZvdW5kNDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Login/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cU2lnbkluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Register/Signup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcU2lnbnVwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_BlogAllBlogs/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0Jsb2dBbGxCbG9nc1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_BlogCategoryList/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0Jsb2dDYXRlZ29yeUxpc3RcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_BlogRecentBlogs/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0Jsb2dSZWNlbnRCbG9nc1xEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_BlogSubscribe/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0Jsb2dTdWJzY3JpYmVcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_ContactInfo/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0NvbnRhY3RJbmZvXERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_ContactSendMessage/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0NvbnRhY3RTZW5kTWVzc2FnZVxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeAboutComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVBYm91dENvbXBvbmVudFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeBannerComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVCYW5uZXJDb21wb25lbnRcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeBlogComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVCbG9nQ29tcG9uZW50XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeCounterComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVDb3VudGVyQ29tcG9uZW50XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeCourseCategoryComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVDb3Vyc2VDYXRlZ29yeUNvbXBvbmVudFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeCourseComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVDb3Vyc2VDb21wb25lbnRcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeTeacherComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVUZWFjaGVyQ29tcG9uZW50XERlZmF1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_HomeTestimonialComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0hvbWVUZXN0aW1vbmlhbENvbXBvbmVudFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_LayoutSubscribeComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX0xheW91dFN1YnNjcmliZUNvbXBvbmVudFxEZWZhdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_UILayoutHeaderContactInfoComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX1VJTGF5b3V0SGVhZGVyQ29udGFjdEluZm9Db21wb25lbnRcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_UILayoutHeaderSocialMediaComponent/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX1VJTGF5b3V0SGVhZGVyU29jaWFsTWVkaWFDb21wb25lbnRcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Components/_UILayoutSocialMedia/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcX1VJTGF5b3V0U29jaWFsTWVkaWFcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Teacher/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/UILayout/Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVUlMYXlvdXRcTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/merth/OneDrive/Masaüstü/2025 Yazılım/YoutubeOnlineEdu/OnlineEdu.WebUI/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-9kcufqmvve

@@ -1,0 +1,14 @@
+﻿@model CreateBlogCategoryDto
+@{
+    ViewData["Title"] = "Blog Category oluşturma sayfası";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<form method="post">
+    
+    <label>Name</label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br />
+    
+    <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+</form>

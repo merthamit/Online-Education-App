@@ -1,0 +1,33 @@
+﻿@model List<ResulBannerDto>
+@{
+    ViewData["Title"] = "Banner Page";
+    Layout = "_AdminLayout";
+}
+@{
+    int count = 0;
+}
+<table class="table table-hover">
+    <tr>
+
+        <th>#</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <th><img src="@item.ImageUrl" style="width:75px; height:75px;" /></th>
+            <th>@item.Title</th>
+            <td>
+                <a asp-action="DeleteBanner" asp-controller="Banner" asp-area="Admin" class="btn btn-outline-danger" asp-route-id="@item.BannerId">Sil</a>
+                <a asp-action="UpdateBanner" asp-controller="Banner" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.BannerId">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<a asp-action="CreateBanner" asp-controller="Banner" asp-area="Admin" class="btn btn-outline-primary">Yeni Banner Ekle</a>

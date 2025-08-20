@@ -1,0 +1,62 @@
+﻿@model List<ResultContactDto>
+@{
+    ViewData["Title"] = "Blog Page";
+    Layout = "_AdminLayout";
+}
+@{
+    int count = 0;
+}
+<table class="table table-hover">
+    <tr>
+
+        <th>#</th>
+        <th>MapUrl</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <th>@item.MapUrl</th>
+            <th>@item.Address</th>
+            <th>@item.Phone</th>
+            <th>@item.Email</th>
+            <td>
+                <button onclick="deleteContact(@item.ContactId)" class="btn btn-outline-danger">Sil</button>
+                <a asp-action="UpdateContact" asp-controller="Contact" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.ContactId">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<a asp-action="CreateContact" asp-controller="Contact" asp-area="Admin" class="btn btn-outline-primary">Yeni Hakkımda Ekle</a>
+<script>
+
+    function deleteContact(id){
+        Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+            window.location.href = "/Admin/Contact/DeleteContact/" + id
+              }
+        });
+    }
+
+
+</script>

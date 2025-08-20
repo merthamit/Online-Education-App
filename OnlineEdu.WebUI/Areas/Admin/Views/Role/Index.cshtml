@@ -1,0 +1,56 @@
+﻿@model List<ResultRoleDto>
+@{
+    ViewData["Title"] = "Rol listesi";
+    Layout = "_AdminLayout";
+}
+
+@{
+    int count = 0;
+}
+<table class="table table-hover">
+    <tr>
+
+        <th>#</th>
+        <th>Role Adı</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@count</th>
+            <th>@item.Name</th>
+            <td>
+                <button onclick="deleteRole(@item.Id)" class="btn btn-outline-danger">Sil</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<a asp-action="CreateRole" asp-controller="Role" asp-area="Admin" class="btn btn-outline-primary">Yeni Role Ekle</a>
+<script>
+
+    function deleteRole(id){
+        Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+            window.location.href = "/Admin/Role/DeleteRole/" + id
+              }
+        });
+    }
+
+
+</script>
