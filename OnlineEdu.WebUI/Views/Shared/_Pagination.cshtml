@@ -1,0 +1,25 @@
+@model PaginationViewModel
+
+@if (Model != null && Model.TotalPages > 1)
+{
+    <nav class="blog-pagination justify-content-center d-flex">
+        <ul class="pagination">
+            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                <a href="@(Model.CurrentPage == 1 ? "#" : Model.PageUrl(Model.CurrentPage - 1))" class="page-link" aria-label="Önceki">
+                    <i class="ti-angle-left"></i>
+                </a>
+            </li>
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a href="@Model.PageUrl(i)" class="page-link">@i</a>
+                </li>
+            }
+            <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                <a href="@(Model.CurrentPage == Model.TotalPages ? "#" : Model.PageUrl(Model.CurrentPage + 1))" class="page-link" aria-label="Sonraki">
+                    <i class="ti-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+}

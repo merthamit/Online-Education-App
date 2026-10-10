@@ -1,0 +1,60 @@
+﻿@model ResultCourseDto
+@{
+    var teacher = Model.AppUser;
+    var teacherName = teacher != null ? teacher.FirstName + " " + teacher.LastName : "OnlineEdu Ekibi";
+}
+<div class="oe-card">
+    <a href="/Course/CourseDetails/@Model.CourseId" class="oe-card-img">
+        <img src="@Model.ImageUrl" alt="@Model.CourseName" loading="lazy">
+        @if (Model.Price <= 0)
+        {
+            <span class="oe-card-price free">Ücretsiz</span>
+        }
+        else
+        {
+            <span class="oe-card-price">@Model.Price.ToString("0.##") ₺</span>
+        }
+    </a>
+    <div class="oe-card-body">
+        @if (Model.Category != null)
+        {
+            <span class="oe-badge">@Model.Category.CategoryName</span>
+        }
+        <h4 class="oe-card-title"><a href="/Course/CourseDetails/@Model.CourseId">@Model.CourseName</a></h4>
+        <div class="oe-card-rating">
+            @if (Model.ReviewCount > 0)
+            {
+                <strong>@Model.AverageRating.ToString("0.0")</strong>
+                <partial name="_Stars" model="Model.AverageRating" />
+                <span>(@Model.ReviewCount)</span>
+            }
+            else
+            {
+                <partial name="_Stars" model="0.0" />
+                <span>Henüz puan yok</span>
+            }
+        </div>
+        <div class="oe-card-teacher">
+            @if (!string.IsNullOrEmpty(teacher?.ImageUrl))
+            {
+                <img src="@teacher.ImageUrl" alt="@teacherName">
+            }
+            else
+            {
+                <span class="oe-avatar-placeholder"><i class="fas fa-user"></i></span>
+            }
+            @if (Model.AppUserId != null && teacher != null)
+            {
+                <a href="/Course/Index?teacher=@Model.AppUserId" class="oe-card-teacher-link">@teacherName</a>
+            }
+            else
+            {
+                <span>@teacherName</span>
+            }
+        </div>
+        <div class="oe-card-footer">
+            <span class="oe-card-meta"><i class="far fa-play-circle"></i> Online Eğitim</span>
+            <a href="/Course/CourseDetails/@Model.CourseId" class="oe-btn">İncele <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </div>
+</div>

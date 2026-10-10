@@ -1,81 +1,148 @@
 ﻿@model List<ResultCourseDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = ViewBag.Heading ?? "Kurslar";
     Layout = "~/Views/UILayout/Layout.cshtml";
 }
 
-
-
 <main>
-    <!--? Hero Start -->
     <div class="slider-area ">
         <div class="slider-height2 d-flex align-items-center">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="hero-cap hero-cap2 text-center">
-
-                            <h2>Tüm Kurslar</h2>
-
+                            <h2>@(ViewBag.Heading ?? "Tüm Kurslar")</h2>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Hero End -->
-    <!-- all-course Start -->
-    <section class="all-course section-padding30">
+
+    <section class="oe-section">
         <div class="container">
-            <div class="row">
-                <div class="all-course-wrapper">
-                    <!-- Heading & Nav Button -->
-                    <!-- Tab content -->
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Nav Card -->
-                            <div class="tab-content" id="nav-tabContent">
-                                <!--  one -->
-
-
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                    <div class="row">
-                                        @foreach (var course in Model)
-                                        {
-                                            <div class="col-xl-4 col-lg-4 col-md-6">
-                                                <!-- Single course -->
-                                                <div class="single-course mb-70">
-                                                    <div class="course-img">
-                                                        <img src="@course.ImageUrl" alt="">
-                                                    </div>
-                                                    <div class="course-caption">
-                                                        <div class="course-cap-top">
-                                                            <h4><a href="#">@course.CourseName</a></h4>
-                                                        </div>
-                                                        <div class="course-cap-mid d-flex justify-content-between">
-
-                                                            <ul><li>@course.Category.CategoryName</li></ul>
-                                                        </div>
-                                                        <div class="course-cap-bottom d-flex justify-content-between">
-
-                                                            <span>@course.Price ₺</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-
-                                    </div>
-                                </div>
-
-
+            @{
+                var filter = (CourseFilterViewModel)ViewBag.Filter;
+            }
+            @{
+                var teacherInfo = ViewBag.Teacher as ResultUserDto;
+            }
+            @if (teacherInfo != null)
+            {
+                <div class="oe-teacher-hero">
+                    <img src="@(teacherInfo.ImageUrl ?? "https://cdn-icons-png.flaticon.com/512/6621/6621964.png")" alt="@teacherInfo.FirstName @teacherInfo.LastName">
+                    <div class="oe-teacher-info">
+                        <span class="oe-eyebrow">Eğitmen</span>
+                        <h3>@teacherInfo.FirstName @teacherInfo.LastName</h3>
+                        <p>@filter.TotalCount kurs yayınladı</p>
+                        @if (teacherInfo.TeacherSocials != null && teacherInfo.TeacherSocials.Any())
+                        {
+                            <div class="oe-teacher-socials">
+                                @foreach (var social in teacherInfo.TeacherSocials)
+                                {
+                                    <a href="@social.Url" target="_blank" rel="noopener" title="@social.SocialMediaName"><i class="@social.Icon"></i></a>
+                                }
                             </div>
-                            <!-- End Nav Card -->
-                        </div>
+                        }
                     </div>
+                    @if (ViewBag.IsOwnPage == true)
+                    {
+                        <div class="oe-teacher-owner">
+                            <a href="/Teacher/MyCourse/CreateCourse" class="oe-btn"><i class="fas fa-plus"></i> Kurs Aç</a>
+                            <a href="/Teacher/MyCourse/Index" class="oe-btn-outline"><i class="fas fa-cog"></i> Kurslarımı Yönet</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="/Course/Index" class="oe-btn-outline oe-teacher-all">Tüm Kurslar</a>
+                    }
                 </div>
+                @if (ViewBag.IsOwnPage == true && (int)(ViewBag.PendingCount ?? 0) > 0)
+                {
+                    <div class="oe-pending-note">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span><strong>@ViewBag.PendingCount kursunuz</strong> yönetici onayı bekliyor. Onaylandığında bu sayfada herkese görünecek.</span>
+                    </div>
+                }
+            }
+            <form method="get" action="/Course/Index" class="oe-filter" id="courseFilter">
+                @if (filter.Teacher.HasValue)
+                {
+                    <input type="hidden" name="teacher" value="@filter.Teacher">
+                }
+                <div class="oe-filter-field oe-filter-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" name="search" value="@filter.Search" placeholder="Kurs, kategori veya eğitmen ara...">
+                </div>
+                <div class="oe-filter-field">
+                    <select name="category">
+                        <option value="">Tüm Kategoriler</option>
+                        @foreach (var c in filter.Categories)
+                        {
+                            <option value="@c.CourseCategoryId" selected="@(filter.Category == c.CourseCategoryId)">@c.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <div class="oe-filter-field">
+                    <select name="price">
+                        <option value="">Tüm Fiyatlar</option>
+                        <option value="free" selected="@(filter.Price == "free")">Ücretsiz</option>
+                        <option value="paid" selected="@(filter.Price == "paid")">Ücretli</option>
+                    </select>
+                </div>
+                <div class="oe-filter-field">
+                    <select name="rating">
+                        <option value="">Tüm Puanlar</option>
+                        <option value="4.5" selected="@(filter.Rating == 4.5)">★ 4,5 ve üzeri</option>
+                        <option value="4" selected="@(filter.Rating == 4)">★ 4 ve üzeri</option>
+                        <option value="3" selected="@(filter.Rating == 3)">★ 3 ve üzeri</option>
+                    </select>
+                </div>
+                <div class="oe-filter-field">
+                    <select name="sort">
+                        <option value="">En Yeni</option>
+                        <option value="rating" selected="@(filter.Sort == "rating")">En Yüksek Puan</option>
+                        <option value="popular" selected="@(filter.Sort == "popular")">En Çok Değerlendirilen</option>
+                        <option value="price-asc" selected="@(filter.Sort == "price-asc")">Fiyat: Artan</option>
+                        <option value="price-desc" selected="@(filter.Sort == "price-desc")">Fiyat: Azalan</option>
+                        <option value="name" selected="@(filter.Sort == "name")">İsme Göre (A-Z)</option>
+                    </select>
+                </div>
+                <button type="submit" class="oe-btn oe-filter-submit" id="courseFilterBtn"><i class="fas fa-filter"></i> <span>Filtrele</span></button>
+            </form>
+
+            <div id="courseResults">
+            <div class="oe-result-bar">
+                <span><strong>@filter.TotalCount</strong> kurs bulundu</span>
+                @if (filter.HasFilter)
+                {
+                    <a href="/Course/Index" class="oe-clear"><i class="fas fa-times"></i> Filtreleri temizle</a>
+                }
+            </div>
+
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-search" style="font-size: 56px; color: #ccc;"></i>
+                    <h3 class="mt-4">@(teacherInfo != null && !filter.HasFilterExceptTeacher ? "Bu eğitmenin henüz yayında kursu yok" : "Aradığınız kriterlere uygun kurs bulunamadı")</h3>
+                    <p>Filtreleri değiştirmeyi veya temizlemeyi deneyin.</p>
+                    <a href="/Course/Index" class="oe-btn-outline mt-2">Tüm Kurslara Göz At</a>
+                </div>
+            }
+            else
+            {
+                <div class="row oe-grid">
+                    @foreach (var course in Model)
+                    {
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <partial name="_CourseCard" model="course" />
+                        </div>
+                    }
+                </div>
+                @await Html.PartialAsync("_Pagination", (PaginationViewModel)ViewBag.Pagination)
+            }
             </div>
         </div>
     </section>
-    <!-- all-course End -->
 </main>
+<script src="~/js/course-filter.js" asp-append-version="true"></script>

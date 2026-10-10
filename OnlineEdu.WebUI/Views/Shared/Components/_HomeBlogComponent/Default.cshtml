@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="blog-cap">
-                                <p>|   @item.BlogCategory.Name</p>
+                                <p>|   @(item.BlogCategory?.Name)</p>
                                 <h3><a href="/Blog/BlogDetails/@item.BlogId">@item.Title</a></h3>
                                 <a href="/Blog/BlogDetails/@item.BlogId" class="more-btn">Devamını Oku »</a>
                             </div>

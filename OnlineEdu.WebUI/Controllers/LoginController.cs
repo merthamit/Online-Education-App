@@ -25,12 +25,17 @@ namespace OnlineEdu.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SignIn(UserLoginDto userLoginDto)
+        public async Task<IActionResult> SignIn(UserLoginDto userLoginDto, string? returnUrl = null)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(userLoginDto);
+            }
+
             var result = await _client.PostAsJsonAsync("users/login", userLoginDto);
             if (!result.IsSuccessStatusCode)
             {
-                ModelState.AddModelError("", "Kullanıcı Adı veya Şifre hatalı");
+                ModelState.AddModelError("", "E-posta adresi veya şifre hatalı.");
                 return View(userLoginDto);
             }
 
@@ -50,10 +55,22 @@ namespace OnlineEdu.WebUI.Controllers
                 };
 
                 await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProps);
+                
+                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return LocalRedirect(returnUrl);
+                }
+
+                var hasAdminRole = claims.Any(c => c.Type == ClaimTypes.Role && c.Value.Equals("Admin", StringComparison.OrdinalIgnoreCase));
+                if (hasAdminRole)
+                {
+                    return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                }
+                
                 return RedirectToAction("Index", "Home");
             }
 
-            ModelState.AddModelError("", "Kullanıcı Adı veya Şifre hatalı");
+            ModelState.AddModelError("", "E-posta adresi veya şifre hatalı.");
             return View(userLoginDto);
         }
 

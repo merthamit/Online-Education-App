@@ -18,6 +18,9 @@ namespace OnlineEdu.DataAccess.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -351,6 +354,39 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.ToTable("BlogCategories");
                 });
 
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.BlogComment", b =>
+                {
+                    b.Property<int>("BlogCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BlogCommentId"));
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BlogCommentId");
+
+                    b.HasIndex("BlogId");
+
+                    b.ToTable("BlogComments");
+                });
+
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Contact", b =>
                 {
                     b.Property<int>("ContactId")
@@ -468,6 +504,40 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.ToTable("CourseRegisters");
                 });
 
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseReview", b =>
+                {
+                    b.Property<int>("CourseReviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseReviewId"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseReviewId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CourseId", "AppUserId")
+                        .IsUnique();
+
+                    b.ToTable("CourseReviews");
+                });
+
             modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseVideo", b =>
                 {
                     b.Property<int>("CourseVideoId")
@@ -565,6 +635,51 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.HasKey("SubscriberId");
 
                     b.ToTable("Subscribers");
+                });
+
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherApplication", b =>
+                {
+                    b.Property<int>("TeacherApplicationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TeacherApplicationId"));
+
+                    b.Property<string>("AdminNote")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Expertise")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Motivation")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("PortfolioUrl")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime?>("ReviewedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("TeacherApplicationId");
+
+                    b.HasIndex("AppUserId", "Status");
+
+                    b.ToTable("TeacherApplications");
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
@@ -697,6 +812,17 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.Navigation("Writer");
                 });
 
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.BlogComment", b =>
+                {
+                    b.HasOne("OnlineEdu.Entity.Entities.Blog", "Blog")
+                        .WithMany("BlogComments")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Course", b =>
                 {
                     b.HasOne("OnlineEdu.Entity.Entities.AppUser", "AppUser")
@@ -733,6 +859,25 @@ namespace OnlineEdu.DataAccess.Migrations
                     b.Navigation("Course");
                 });
 
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseReview", b =>
+                {
+                    b.HasOne("OnlineEdu.Entity.Entities.AppUser", "AppUser")
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineEdu.Entity.Entities.Course", "Course")
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("OnlineEdu.Entity.Entities.CourseVideo", b =>
                 {
                     b.HasOne("OnlineEdu.Entity.Entities.Course", "Course")
@@ -742,6 +887,17 @@ namespace OnlineEdu.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherApplication", b =>
+                {
+                    b.HasOne("OnlineEdu.Entity.Entities.AppUser", "AppUser")
+                        .WithMany("TeacherApplications")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.TeacherSocial", b =>
@@ -761,9 +917,18 @@ namespace OnlineEdu.DataAccess.Migrations
 
                     b.Navigation("CourseRegisters");
 
+                    b.Navigation("CourseReviews");
+
                     b.Navigation("Courses");
 
+                    b.Navigation("TeacherApplications");
+
                     b.Navigation("TeacherSocials");
+                });
+
+            modelBuilder.Entity("OnlineEdu.Entity.Entities.Blog", b =>
+                {
+                    b.Navigation("BlogComments");
                 });
 
             modelBuilder.Entity("OnlineEdu.Entity.Entities.BlogCategory", b =>
@@ -774,6 +939,8 @@ namespace OnlineEdu.DataAccess.Migrations
             modelBuilder.Entity("OnlineEdu.Entity.Entities.Course", b =>
                 {
                     b.Navigation("CourseRegisters");
+
+                    b.Navigation("CourseReviews");
 
                     b.Navigation("CourseVideos");
                 });

@@ -1,6 +1,6 @@
 ﻿@model List<ResultRoleDto>
 @{
-    ViewData["Title"] = "Rol listesi";
+    ViewData["Title"] = "Roller";
     Layout = "_AdminLayout";
 }
 
@@ -11,7 +11,7 @@
     <tr>
 
         <th>#</th>
-        <th>Role Adı</th>
+        <th>Rol Adı</th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -28,7 +28,7 @@
 </table>
 
 <br />
-<a asp-action="CreateRole" asp-controller="Role" asp-area="Admin" class="btn btn-outline-primary">Yeni Role Ekle</a>
+<a asp-action="CreateRole" asp-controller="Role" asp-area="Admin" class="btn btn-outline-primary">Yeni Rol Ekle</a>
 <script>
 
     function deleteRole(id){

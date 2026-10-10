@@ -11,30 +11,24 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            @foreach (var item in Model)
+        <div class="row oe-grid">
+            @foreach (var item in Model.Take(6))
             {
-
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="single-cat mb-50">
-                        <div class="cat-icon">
-                            <span class="@item.Icon"></span>
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a href="/Course/GetCoursesByCategoryId/@item.CourseCategoryId">@item.CategoryName</a></h5>
-                            <p>@(item.Description.Length > 100 ? item.Description.Substring(0, 100) : item.Description)</p>
-                            <a href="/Course/GetCoursesByCategoryId/@item.CourseCategoryId" class="read-more1">Kursları İncele ></a>
-                        </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="oe-cat-card">
+                        <div class="oe-cat-icon"><i class="@item.Icon"></i></div>
+                        <h5><a href="/Course/Index?category=@item.CourseCategoryId">@item.CategoryName</a></h5>
+                        <p>@(item.Description?.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description)</p>
+                        <a href="/Course/Index?category=@item.CourseCategoryId" class="oe-cat-link">Kursları İncele <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             }
-
         </div>
         <!-- Section Button -->
         <div class="row">
             <div class="col-lg-12">
-                <div class="browse-btn2 text-center mt-50">
-                    <a href="#" class="btn">Tüm Kurslara Göz Atın</a>
+                <div class="text-center mt-30">
+                    <a href="/Course/Index" class="oe-btn-outline">Tüm Kurslara Göz Atın <i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>

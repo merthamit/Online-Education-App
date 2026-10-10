@@ -33,8 +33,8 @@
             <th><img src="@item.ImageUrl" style="height:75px;width:75px" /></th>
             <td>@item.CourseName</td>
             <td>@item.Price ₺</td>
-            <td>@item.Category.CategoryName </td>
-            <td>@item.AppUser.FirstName @item.AppUser.LastName </td>
+            <td>@(item.Category?.CategoryName) </td>
+            <td>@(item.AppUser != null ? item.AppUser.FirstName + " " + item.AppUser.LastName : "Atanmadı") </td>
             <td>@(item.IsShown ? "Gösteriliyor" : "Gösterilmiyor") </td>
             <td>
                 <button onclick="deleteCourse(@item.CourseId)" class="btn btn-outline-danger">Sil</button>

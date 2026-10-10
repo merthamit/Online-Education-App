@@ -1,20 +1,20 @@
 ﻿@model UpdateMessageDto
 @{
-    ViewData["Title"] = "Message Oluşturma sayfası";
+    ViewData["Title"] = "Mesajı Düzenle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <form method="post">
     <input type="hidden" asp-for="MessageId" />
-    <label>Name</label>
+    <label>Ad Soyad</label>
     <input type="text" asp-for="Name" class="form-control" />
     <span asp-validation-for="Name" class="text-danger"></span>
     <br />
 
-    <label>Email</label>
+    <label>E-posta</label>
     <input type="text" asp-for="Email" class="form-control" />
     <br />
 
-    <label>Subject</label>
+    <label>Konu</label>
     <input type="text" asp-for="Subject" class="form-control" />
     <br />
 

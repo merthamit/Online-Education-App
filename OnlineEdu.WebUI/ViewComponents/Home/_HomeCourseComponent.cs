@@ -14,8 +14,9 @@ namespace OnlineEdu.WebUI.ViewComponents.Home
         }
         public async Task <IViewComponentResult> InvokeAsync()
         {
-            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses/GetActiveCourses");
-            return View(values);
+            var values = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses/GetActiveCourses") ?? new List<ResultCourseDto>();
+            await _client.AttachRatingsAsync(values);
+            return View(values.OrderByDescending(x => x.AverageRating).ThenByDescending(x => x.CourseId).Take(6).ToList());
         }
     }
 }

@@ -1,3 +1,7 @@
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.WebEncoders;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using OnlineEdu.WebUI.Services.TokenServices;
 using OnlineEdu.WebUI.Services.UserServices;
@@ -15,7 +19,7 @@ builder.Services.AddHttpClient("EduClient", cfg =>
 {
     var tokenService = builder.Services.BuildServiceProvider().GetRequiredService<ITokenService>();
     var token = tokenService.GetUserToken;
-    cfg.BaseAddress = new Uri("https://localhost:7227/api/");
+    cfg.BaseAddress = new Uri("http://onlineeduapi:8080/api/");
     if(token != null)
     {
         cfg.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", tokenService.GetUserToken);
@@ -35,6 +39,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCo
 });
 
 builder.Services.AddControllersWithViews();
+
+// Oturum/antiforgery anahtarlarını kalıcı klasörde tut: konteyner yeniden başlayınca kullanıcılar oturumdan düşmesin
+var keysPath = builder.Configuration["DataProtection:KeysPath"];
+if (!string.IsNullOrEmpty(keysPath))
+{
+    builder.Services.AddDataProtection()
+        .PersistKeysToFileSystem(new DirectoryInfo(keysPath))
+        .SetApplicationName("OnlineEdu");
+}
+
+// Türkçe karakterlerin HTML'de &#x...; olarak kodlanmaması için
+builder.Services.Configure<WebEncoderOptions>(options =>
+    options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
 
 var app = builder.Build();
 

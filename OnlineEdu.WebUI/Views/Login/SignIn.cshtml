@@ -1,85 +1,50 @@
-﻿@model UserLoginDto
+@model UserLoginDto
 @{
-    ViewData["Title"] = "SignIn";
+    ViewData["Title"] = "Giriş Yap";
     Layout = "~/Views/UILayout/Layout.cshtml";
 }
 
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+<section class="oe-auth">
+    <div class="container">
+        <div class="oe-auth-card">
+            <div class="oe-auth-side">
+                <h2>Tekrar hoş geldiniz</h2>
+                <p>Hesabınıza giriş yapın, kayıtlı olduğunuz kurslara kaldığınız yerden devam edin.</p>
+                <ul class="oe-auth-benefits">
+                    <li><i class="fas fa-check-circle"></i> Kayıtlı kurslarınız ve videolarınız</li>
+                    <li><i class="fas fa-check-circle"></i> Eğitmen ve öğrenci panelleri</li>
+                    <li><i class="fas fa-check-circle"></i> Blog yorumları ve profil ayarları</li>
+                </ul>
+                <img src="~/login-form-07/images/undraw_remotely_2j6y.svg" alt="" class="oe-auth-illustration">
+            </div>
 
-    <link rel="stylesheet" href="~/login-form-07/fonts/icomoon/style.css">
+            <div class="oe-auth-form">
+                <h3>Giriş Yap</h3>
+                <p class="oe-auth-sub">Hesabınız yok mu? <a href="/Register/Signup">Ücretsiz kayıt olun</a></p>
 
-    <link rel="stylesheet" href="~/login-form-07/css/owl.carousel.min.css">
+                <form method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="oe-auth-alert"></div>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/login-form-07/css/bootstrap.min.css">
-
-    <!-- Style -->
-    <link rel="stylesheet" href="~/login-form-07/css/style.css">
-
-    <title>Online Edu | Giriş Sayfası</title>
-</head>
-<body>
-
-
-
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="~/login-form-07/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
-                </div>
-                <div class="col-md-6 contents">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="mb-4">
-                                <h3>Giriş Yap</h3>
-                                <p class="mb-4">Ücretsiz kurslarımıza erişmek için sisteme giriş yapınız.</p>
-                            </div>
-                            <form method="post">
-                                <div class="form-group first">
-                                    <label for="username">Email</label>
-                                    <input type="email" asp-for="Email" class="form-control">
-                                </div>
-
-                                <div class="form-group last mb-4">
-                                    <label for="password">Şifre</label>
-                                    <input type="password" asp-for="Password" class="form-control" id="password">
-
-                                </div>
-
-
-                                <p class="mb-4">
-                                    @Html.ValidationSummary()
-                                </p>
-                                <input type="submit" value="Giriş Yap" class="btn btn-block btn-primary">
-
-
-                            </form>
-                        </div>
+                    <div class="oe-field">
+                        <label asp-for="Email">E-posta</label>
+                        <div class="oe-input"><i class="fas fa-envelope"></i><input asp-for="Email" type="email" placeholder="ornek@mail.com" autocomplete="email" autofocus></div>
+                        <span asp-validation-for="Email" class="oe-field-error"></span>
                     </div>
 
-                </div>
+                    <div class="oe-field">
+                        <label asp-for="Password">Şifre</label>
+                        <div class="oe-input">
+                            <i class="fas fa-lock"></i>
+                            <input asp-for="Password" type="password" placeholder="Şifreniz" autocomplete="current-password">
+                            <button type="button" class="oe-toggle-pw" aria-label="Şifreyi göster"><i class="far fa-eye"></i></button>
+                        </div>
+                        <span asp-validation-for="Password" class="oe-field-error"></span>
+                    </div>
 
+                    <button type="submit" class="oe-btn oe-auth-submit">Giriş Yap <i class="fas fa-arrow-right"></i></button>
+                </form>
             </div>
         </div>
     </div>
-
-
-    <script src="~/login-form-07/js/jquery-3.3.1.min.js"></script>
-    <script src="~/login-form-07/js/popper.min.js"></script>
-    <script src="~/login-form-07/js/bootstrap.min.js"></script>
-    <script src="~/login-form-07/js/main.js"></script>
-</body>
-</html>
-
-
-
-
-
-
+</section>
+<script src="~/js/auth.js" asp-append-version="true"></script>

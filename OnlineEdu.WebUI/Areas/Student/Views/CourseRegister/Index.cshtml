@@ -1,6 +1,6 @@
 ﻿@model List<ResultCourseRegisterDto>
 @{
-    ViewData["Title"] = "Kayıtlı Olduğum Kurslar";
+    ViewData["Title"] = "Kurs Kayıtlarım";
     Layout = "~/Areas/Student/Views/StudentLayout/Index.cshtml";
 }
 
@@ -32,8 +32,8 @@
             <th>@count</th>
             <th><img src="@item.Course.ImageUrl" style="height:75px;width:75px" /></th>
             <td>@item.Course.CourseName</td>
-            <td>@item.Course.AppUser.FirstName @item.Course.AppUser.LastName</td>
-            <td>@item.Course.Category.CategoryName </td>
+            <td>@(item.Course?.AppUser != null ? item.Course.AppUser.FirstName + " " + item.Course.AppUser.LastName : "Atanmadı")</td>
+            <td>@(item.Course?.Category?.CategoryName) </td>
 
             <td>
 

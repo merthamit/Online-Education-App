@@ -5,12 +5,12 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
+<style>html, body { overflow-x: hidden; }</style>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title> Education | Template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
     <!-- CSS here -->
@@ -21,12 +21,12 @@
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/gijgo.css">
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/animate.min.css">
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="~/onlineedu-master/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/themify-icons.css">
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/slick.css">
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/nice-select.css">
     <link rel="stylesheet" href="~/onlineedu-master/assets/css/style.css">
-    <link rel="stylesheet" href="~/Login & Signup Form/style.css">
+    <link rel="stylesheet" href="~/css/onlineedu-custom.css" asp-append-version="true">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
 </head>
 <body>
@@ -56,10 +56,52 @@
 
                                 @await Component.InvokeAsync("_UILayoutHeaderContactInfoComponent")
 
-                                <div class="header-info-right">
+                                                                <div class="header-info-right">
                                     <ul>
-                                        <li><a href="/Login/SignIn"><i class="ti-user"></i>Giriş Yap</a></li>
-                                        <li><a href="/Register/Signup"><i class="ti-lock"></i>Kayıt Ol</a></li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            var fullName = User.Claims.FirstOrDefault(x => x.Type == "fullName")?.Value ?? User.Identity.Name;
+                                            var role = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+                                            var userId = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+                                            var roleName = role switch { "Admin" => "Yönetici", "Teacher" => "Eğitmen", _ => "Öğrenci" };
+                                            var initials = string.Concat((fullName ?? "?").Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => char.ToUpper(x[0])));
+                                            <li class="oe-user-menu">
+                                                <button type="button" class="oe-user-toggle" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="oe-user-avatar">@initials</span>
+                                                    <span class="oe-user-name">@fullName</span>
+                                                    <i class="fas fa-chevron-down"></i>
+                                                </button>
+                                                <div class="oe-user-dropdown" role="menu">
+                                                    <div class="oe-user-head">
+                                                        <span class="oe-user-avatar lg">@initials</span>
+                                                        <div><strong>@fullName</strong><small>@roleName</small></div>
+                                                    </div>
+                                                    @if (role == "Admin")
+                                                    {
+                                                        <a href="/Admin/Dashboard/Index"><i class="fas fa-tachometer-alt"></i> Yönetim Paneli</a>
+                                                    }
+                                                    @if (role == "Teacher")
+                                                    {
+                                                        <a href="/Course/Index?teacher=@userId"><i class="fas fa-id-badge"></i> Eğitmen Sayfam</a>
+                                                        <a href="/Teacher/MyCourse/CreateCourse"><i class="fas fa-plus-circle"></i> Kurs Aç</a>
+                                                        <a href="/Teacher/MyCourse/Index"><i class="fas fa-chalkboard"></i> Eğitmen Paneli</a>
+                                                    }
+                                                    @if (role == "Student")
+                                                    {
+                                                        <a href="/MyCourses/Index"><i class="fas fa-book-reader"></i> Kayıt Olduğum Kurslar</a>
+                                                        <a href="/TeacherApplication/Index"><i class="fas fa-chalkboard-teacher"></i> Eğitmen Ol</a>
+                                                    }
+                                                    <a href="/Setting/Index"><i class="fas fa-user-cog"></i> Profil Ayarları</a>
+                                                    <div class="oe-user-sep"></div>
+                                                    <a href="/Login/Logout" class="danger"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a>
+                                                </div>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="/Login/SignIn" class="oe-top-link"><i class="fas fa-sign-in-alt"></i> Giriş Yap</a></li>
+                                            <li><a href="/Register/Signup" class="oe-top-cta">Ücretsiz Kayıt Ol</a></li>
+                                        }
                                     </ul>
                                 </div>
                             </div>
@@ -69,13 +111,13 @@
                 <div class="header-bottom header-sticky">
                     <!-- Logo -->
                     <div class="logo d-none d-lg-block">
-                        <a href="index.html"><img src="~/onlineedu-master/assets/img/logo/logo.png" alt=""></a>
+                        <a href="/Home/Index"><img src="~/onlineedu-master/assets/img/logo/logo.png" alt=""></a>
                     </div>
                     <div class="container">
                         <div class="menu-wrapper">
                             <!-- Logo -->
                             <div class="logo logo2 d-block d-lg-none">
-                                <a href="index.html"><img src="~/onlineedu-master/assets/img/logo/logo.png" alt=""></a>
+                                <a href="/Home/Index"><img src="~/onlineedu-master/assets/img/logo/logo.png" alt=""></a>
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu d-none d-lg-block">
@@ -95,11 +137,11 @@
                             </div>
                             <!-- Header-btn -->
                             <div class="header-search d-none d-lg-block">
-                                <form action="#" class="form-box f-right ">
-                                    <input type="text" name="Search" placeholder="Kursları Ara...">
-                                    <div class="search-icon">
+                                <form action="/Course/Index" method="get" class="form-box f-right ">
+                                    <input type="text" name="search" value="@Context.Request.Query["search"]" placeholder="Kurs Ara..." required>
+                                    <button type="submit" class="search-icon" style="border: 0; cursor: pointer;" aria-label="Kurs ara">
                                         <i class="fas fa-search special-tag"></i>
-                                    </div>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -194,7 +236,7 @@
                                         <li><a href="#">Destek</a></li>
                                         <li><a href="/Contact/Index">İletişim</a></li>
                                         <li><a href="#">Sistem Gereksinimleri</a></li>
-                                        <li><a href="/Register/Index">Ücretsiz Kaydolun</a></li>
+                                        <li><a href="/Register/Signup">Ücretsiz Kaydolun</a></li>
                                         <li><a href="#">Geri Dönütler</a></li>
                                     </ul>
                                 </div>
@@ -207,11 +249,7 @@
                     <div class="row d-flex align-items-center">
                         <div class="col-lg-12">
                             <div class="footer-copy-right text-center">
-                                <p>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                </p>
+                                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tüm Hakları Saklıdır | Made with <i class="fa fa-heart" aria-hidden="true" style="color: #007bff;"></i> by Mert</p>
                             </div>
                         </div>
                     </div>
@@ -280,5 +318,20 @@
 
     </script>
 
+<script>
+    // Üst bardaki kullanıcı menüsü
+    (function () {
+        var menu = document.querySelector('.oe-user-menu');
+        if (!menu) return;
+        var btn = menu.querySelector('.oe-user-toggle');
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = menu.classList.toggle('open');
+            btn.setAttribute('aria-expanded', open);
+        });
+        document.addEventListener('click', function (e) { if (!menu.contains(e.target)) { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); } });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') menu.classList.remove('open'); });
+    })();
+</script>
 </body>
 </html>

@@ -1,11 +1,11 @@
 ﻿@model UpdateContactDto
 @{
-    ViewData["Title"] = "Contact Güncelleme sayfası";
+    ViewData["Title"] = "İletişim Bilgisini Düzenle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <form method="post">
     <input type="hidden" asp-for="ContactId" />
-    <label>Map Url</label>
+    <label>Google Haritalar Embed Bağlantısı</label>
     <input type="text" asp-for="MapUrl" class="form-control" />
     <span asp-validation-for="MapUrl" class="text-danger"></span>
     <br />
@@ -18,7 +18,7 @@
     <input type="text" asp-for="Phone" class="form-control" />
     <br />
 
-    <label>Email</label>
+    <label>E-posta</label>
     <input type="text" asp-for="Email" class="form-control" />
     <br />
 

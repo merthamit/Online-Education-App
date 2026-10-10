@@ -11,7 +11,7 @@ namespace OnlineEduAPI.Controllers
     [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
-    public class TestimonialsController(IGenericService<Testimonial> _testimonialService, IMapper _mapper) : ControllerBase
+    public class TestimonialsController(IGenericService<Testimonial> _testimonialService, IMapper _mapper, IImageService _imageService) : ControllerBase
     {
         [AllowAnonymous]
         [HttpGet]
@@ -40,9 +40,13 @@ namespace OnlineEduAPI.Controllers
 
         [HttpDelete("{id}")]
 
-        public IActionResult DeleteById(int id)
+        public async Task<IActionResult> DeleteById(int id)
         {
+            var entity = _testimonialService.TGetById(id);
+            if (entity == null) return NotFound();
             _testimonialService.TDelete(id);
+            // CDN temizliği: kayıt silinince görseli de Cloudinary'den sil
+            await _imageService.DeleteImageAsync(entity.ImageUrl);
             return Ok("Testimonial alanı silindi.");
         }
 
@@ -56,10 +60,14 @@ namespace OnlineEduAPI.Controllers
 
         [HttpPut]
 
-        public IActionResult Update(UpdateTestimonialDto updateTestimonialDto)
+        public async Task<IActionResult> Update(UpdateTestimonialDto updateTestimonialDto)
         {
             var newValue = _mapper.Map<Testimonial>(updateTestimonialDto);
+            var old = _testimonialService.TGetById(newValue.TestimonialId);
+            var oldImageUrl = old?.ImageUrl;
             _testimonialService.TUpdate(newValue);
+            // Görsel değiştiyse eskisini Cloudinary'den sil
+            if (oldImageUrl != newValue.ImageUrl) await _imageService.DeleteImageAsync(oldImageUrl);
             return Ok("Testimonial alanı güncellendi.");
         }
 

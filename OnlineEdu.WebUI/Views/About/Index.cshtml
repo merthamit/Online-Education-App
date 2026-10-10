@@ -1,11 +1,10 @@
 ﻿@model List<ResultAboutDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Hakkımızda";
     Layout = "~/Views/UILayout/Layout.cshtml";
+    var about = Model.FirstOrDefault();
 }
 
-
-<!--? Hero Start -->
 <div class="slider-area">
     <div class="slider-height2 d-flex align-items-center">
         <div class="container">
@@ -19,69 +18,75 @@
         </div>
     </div>
 </div>
-<!-- Hero End -->
-<!-- About Details Start -->
-@foreach (var item in Model)
-{
 
-    <div class="about-details section-padding30">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="about-details-cap mb-50">
-                        <h4>Şirketimiz Hakkında</h4>
-                        <p>
-                            @item.Description
+<section class="oe-section-lg">
+    <div class="container">
+        @if (about != null)
+        {
+            <partial name="_AboutIntro" model="about" />
+        }
+    </div>
+</section>
 
-                        </p>
+<section class="oe-stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-lg-3">
+                <div class="oe-stat"><i class="fas fa-book-open"></i><strong>@ViewBag.CourseCount</strong><span>Online Kurs</span></div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="oe-stat"><i class="fas fa-chalkboard-teacher"></i><strong>@ViewBag.TeacherCount</strong><span>Uzman Eğitmen</span></div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="oe-stat"><i class="fas fa-user-graduate"></i><strong>@ViewBag.StudentCount</strong><span>Aktif Öğrenci</span></div>
+            </div>
+            <div class="col-6 col-lg-3">
+                <div class="oe-stat"><i class="fas fa-layer-group"></i><strong>@ViewBag.CategoryCount</strong><span>Kategori</span></div>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    </div>
-
-
+<section class="oe-section-lg">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="oe-eyebrow">Neden OnlineEdu?</span>
+            <h2 class="oe-section-title">Sizi hedefinize taşıyacak bir öğrenme deneyimi</h2>
+        </div>
+        <div class="row oe-grid">
+            <div class="col-lg-4 col-md-6">
+                <div class="oe-value-card">
+                    <span class="oe-cat-icon"><i class="fas fa-laptop-code"></i></span>
+                    <h5>Uygulamalı Eğitim</h5>
+                    <p>Her kurs, gerçek projeler ve uygulamalı örneklerle ilerler; öğrendiklerinizi hemen kullanırsınız.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="oe-value-card">
+                    <span class="oe-cat-icon"><i class="fas fa-clock"></i></span>
+                    <h5>Kendi Hızınızda</h5>
+                    <p>Videolara dilediğiniz zaman, dilediğiniz cihazdan erişin; öğrenme planınızı siz belirleyin.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="oe-value-card">
+                    <span class="oe-cat-icon"><i class="fas fa-users"></i></span>
+                    <h5>Güçlü Topluluk</h5>
+                    <p>Eğitmenlerimiz ve diğer öğrencilerle blog yorumları ve iletişim kanalları üzerinden etkileşime geçin.</p>
                 </div>
             </div>
         </div>
     </div>
-}
-<!-- About Details End -->
-<!--? About  Start-->
-@foreach (var item in Model)
-{
+</section>
 
-    <div class="about-area section-padding2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-12">
-                    <div class="about-caption mb-50">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle mb-35">
-                            <span>Hakkımızda Merak Edilenler</span>
-
-                        </div>
-                        <p>@item.Description</p>
-                        <ul>
-
-                            <li><span class="flaticon-business"></span> @item.Item1</li>
-                            <li><span class="flaticon-communications-1"></span> @item.Item2</li>
-                            <li><span class="flaticon-graduated"></span> @item.Item3</li>
-                            <li><span class="flaticon-tools-and-utensils"></span> @item.Item4</li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <!-- about-img -->
-                    <div class="about-img ">
-                        <div class="about-font-img d-none d-lg-block">
-                            <img src="@item.ImageUrl1" alt="">
-                        </div>
-                        <div class="about-back-img ">
-                            <img src="@item.ImageUrl2" alt="">
-                        </div>
-                    </div>
-                </div>
+<section class="oe-cta">
+    <div class="container">
+        <div class="oe-cta-box">
+            <div>
+                <h3>Öğrenmeye bugün başlayın</h3>
+                <p>Uzman eğitmenlerin hazırladığı kurslarla kariyerinizde bir adım öne geçin.</p>
             </div>
+            <a href="/Course/Index" class="oe-btn oe-btn-light">Kursları Keşfet <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
-}
-<!-- About Law End-->
+</section>

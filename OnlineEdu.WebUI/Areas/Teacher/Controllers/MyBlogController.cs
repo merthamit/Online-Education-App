@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using OnlineEdu.WebUI.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineEdu.WebUI.DTOs.BlogCategoryDtos;
@@ -42,8 +43,11 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBlog(CreateBlogDto createBlogDto)
+        public async Task<IActionResult> CreateBlog(CreateBlogDto createBlogDto, IFormFile? imageFile)
         {
+            var uploadedUrl = await _client.UploadImageAsync(imageFile);
+            if (uploadedUrl != null) createBlogDto.ImageUrl = uploadedUrl;
+
             var userId = _tokenService.GetUserId;
             createBlogDto.WriterId = userId;
             await _client.PostAsJsonAsync("blogs", createBlogDto);
@@ -59,8 +63,11 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UpdateBlog(UpdateBlogDto updateBlogDto)
+        public async Task<IActionResult> UpdateBlog(UpdateBlogDto updateBlogDto, IFormFile? imageFile)
         {
+            var uploadedUrl = await _client.UploadImageAsync(imageFile);
+            if (uploadedUrl != null) updateBlogDto.ImageUrl = uploadedUrl;
+
             var userId = _tokenService.GetUserId;
             updateBlogDto.WriterId = userId;
             await _client.PutAsJsonAsync("blogs", updateBlogDto);

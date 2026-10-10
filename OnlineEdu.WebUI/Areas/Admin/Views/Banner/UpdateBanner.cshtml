@@ -1,15 +1,15 @@
 ﻿@model UpdateBannerDto
 @{
-    ViewData["Title"] = "Banner güncelleme sayfası";
+    ViewData["Title"] = "Banner Düzenle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <form method="post">
-    <label>Title</label>
+    <label>Başlık</label>
     <input type="hidden" asp-for="BannerId" />
     <input type="text" asp-for="Title" class="form-control" />
     <br />
 
-    <label>Image Url</label>
+    <label>Görsel URL</label>
     <input type="text" asp-for="ImageUrl" class="form-control" />
     <br />
 

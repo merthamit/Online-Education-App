@@ -1,0 +1,85 @@
+﻿@using OnlineEdu.WebUI.Models
+@model List<TeacherApplicationDto>
+@{
+    ViewData["Title"] = "Eğitmen Başvuruları";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var pending = Model.Count(x => x.Status == "Pending");
+}
+
+@if (TempData["AppResult"] != null)
+{
+    <div class="panel-success-box"><i class="mdi mdi-check-circle"></i><div>@TempData["AppResult"]</div></div>
+}
+
+<div class="app-tabs">
+    <button type="button" class="active" data-filter="all">Tümü <span>@Model.Count</span></button>
+    <button type="button" data-filter="Pending">Bekleyen <span>@pending</span></button>
+    <button type="button" data-filter="Approved">Onaylanan <span>@Model.Count(x => x.Status == "Approved")</span></button>
+    <button type="button" data-filter="Rejected">Reddedilen <span>@Model.Count(x => x.Status == "Rejected")</span></button>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="panel-card"><div class="panel-empty"><i class="mdi mdi-account-plus-outline"></i>Henüz eğitmenlik başvurusu yok.</div></div>
+}
+
+<div class="app-list">
+    @foreach (var a in Model)
+    {
+        var initials = string.Concat(a.UserFullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => char.ToUpper(x[0])));
+        var (badge, label) = a.Status switch { "Approved" => ("success", "Onaylandı"), "Rejected" => ("danger", "Reddedildi"), _ => ("warning", "Bekliyor") };
+        <div class="panel-card app-card" data-status="@a.Status">
+            <div class="app-card-head">
+                @if (!string.IsNullOrEmpty(a.UserImageUrl))
+                {
+                    <img src="@a.UserImageUrl" alt="" class="app-avatar">
+                }
+                else
+                {
+                    <span class="app-avatar app-initials">@initials</span>
+                }
+                <div class="flex-grow-1">
+                    <h5>@a.UserFullName</h5>
+                    <small class="text-muted">@a.UserEmail · @a.CreatedAt.ToString("dd MMM yyyy HH:mm", tr)</small>
+                </div>
+                <span class="app-badge app-badge-@badge">@label</span>
+            </div>
+            <div class="app-card-body">
+                <div class="app-field"><span>Uzmanlık</span><strong>@a.Expertise</strong></div>
+                <div class="app-field"><span>Tanıtım</span><p>@a.Motivation</p></div>
+                @if (!string.IsNullOrEmpty(a.PortfolioUrl))
+                {
+                    <div class="app-field"><span>Portfolyo</span><a href="@a.PortfolioUrl" target="_blank" rel="noopener">@a.PortfolioUrl</a></div>
+                }
+                @if (!string.IsNullOrEmpty(a.AdminNote))
+                {
+                    <div class="app-field"><span>Not</span><p>@a.AdminNote</p></div>
+                }
+            </div>
+            @if (a.Status == "Pending")
+            {
+                <form method="post" class="app-card-actions">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@a.TeacherApplicationId">
+                    <input type="text" name="note" class="form-control" maxlength="500" placeholder="Kullanıcıya iletilecek not (isteğe bağlı)">
+                    <button type="submit" formaction="/Admin/TeacherApplication/Approve" class="btn btn-outline-success"><i class="mdi mdi-check"></i> Onayla</button>
+                    <button type="submit" formaction="/Admin/TeacherApplication/Reject" class="btn btn-outline-danger" onclick="return confirm('Başvuruyu reddetmek istediğinize emin misiniz?');"><i class="mdi mdi-close"></i> Reddet</button>
+                </form>
+            }
+        </div>
+    }
+</div>
+
+<script>
+    document.querySelectorAll('.app-tabs button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.app-tabs button').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            var f = btn.dataset.filter;
+            document.querySelectorAll('.app-card').forEach(function (card) {
+                card.style.display = (f === 'all' || card.dataset.status === f) ? '' : 'none';
+            });
+        });
+    });
+</script>

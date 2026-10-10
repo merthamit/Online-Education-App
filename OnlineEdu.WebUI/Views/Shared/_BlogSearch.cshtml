@@ -1,0 +1,20 @@
+﻿@{
+    var currentSearch = Context.Request.Query["search"].ToString();
+}
+<aside class="single_sidebar_widget search_widget">
+    <form action="/Blog/Index" method="get">
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <input type="text" name="search" value="@currentSearch" class="form-control" placeholder="Blog yazılarında ara..." required>
+                <div class="input-group-append">
+                    <button class="btns" type="submit" aria-label="Ara"><i class="ti-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Ara</button>
+        @if (!string.IsNullOrWhiteSpace(currentSearch))
+        {
+            <a href="/Blog/Index" class="d-block text-center mt-3" style="color:#6c6c80;"><i class="ti-close"></i> Aramayı temizle</a>
+        }
+    </form>
+</aside>

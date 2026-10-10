@@ -34,8 +34,9 @@ namespace OnlineEdu.DataAccess.Repositories
         public void Delete(int id)
         {
             var entity = Table.Find(id);
+            if (entity == null) return;
             Table.Remove(entity);
-            _context.SaveChanges(); 
+            _context.SaveChanges();
         }
 
         public int FilteredCount(Expression<Func<T, bool>> predicate)
@@ -65,6 +66,19 @@ namespace OnlineEdu.DataAccess.Repositories
 
         public void Update(T entity)
         {
+            // Aynı anahtarla daha önce okunmuş (takip edilen) bir kayıt varsa onu bırak; aksi halde EF "already tracked" hatası verir
+            var key = _context.Model.FindEntityType(typeof(T))?.FindPrimaryKey();
+            if (key != null)
+            {
+                var keyValues = key.Properties.Select(p => p.PropertyInfo?.GetValue(entity)).ToArray();
+                var tracked = _context.ChangeTracker.Entries<T>().FirstOrDefault(e =>
+                    !ReferenceEquals(e.Entity, entity) &&
+                    key.Properties.Select(p => e.Property(p.Name).CurrentValue).SequenceEqual(keyValues));
+                if (tracked != null)
+                {
+                    tracked.State = EntityState.Detached;
+                }
+            }
             Table.Update(entity);
             _context.SaveChanges();
         }

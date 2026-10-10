@@ -34,9 +34,9 @@ namespace OnlineEdu.Business.Concrete
                 UserName = userRegisterDto.UserName,
                 Email = userRegisterDto.Email
             };
-            if (userRegisterDto.Password != userRegisterDto.Password)
+            if (userRegisterDto.Password != userRegisterDto.ConfirmPassword)
             {
-                return new IdentityResult();
+                return IdentityResult.Failed(new IdentityError { Code = "PasswordMismatch", Description = "Şifreler birbiriyle eşleşmiyor." });
             }
             var result = await _userManager.CreateAsync(user, userRegisterDto.Password);
 

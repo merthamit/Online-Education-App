@@ -1,27 +1,29 @@
 ﻿@model UpdateCourseDto
 
 @{
-    ViewData["Title"] = "Yeni kurs oluşturma sayfası";
+    ViewData["Title"] = "Kursu Düzenle";
     Layout = "~/Areas/Teacher/Views/TeacherLayout/Index.cshtml";
 }
 
 
-<form method="post">
-    <label>Name</label>
+<form method="post" enctype="multipart/form-data">
+    <label>Kurs Adı</label>
     <input type="hidden" asp-for="CourseId" class="form-control" />
     <input type="text" asp-for="CourseName" class="form-control" />
     <span asp-validation-for="CourseName" class="text-danger"></span>
     <br />
 
-    <label>Resim Url</label>
+    <label>Görsel URL</label>
     <input type="text" asp-for="ImageUrl" class="form-control" />
+    <small class="text-muted d-block mt-1">Bir görsel adresi girin veya aşağıdan bilgisayarınızdan yükleyin (Cloudinary CDN'e yüklenir).</small>
+    <input type="file" name="imageFile" class="form-control mt-2" accept="image/*" />
     <br />
 
-    <label>Price</label>
+    <label>Fiyat (₺)</label>
     <input type="text" asp-for="Price" class="form-control" />
     <br />
 
-    <label>Course Categories</label>
+    <label>Kategori</label>
     <select asp-items="@ViewBag.categories" asp-for="CourseCategoryId" class="form-control">
         <option>Kategori Seçin</option>
     </select>

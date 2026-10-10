@@ -7,7 +7,7 @@ namespace OnlineEdu.WebUI.Areas.Student.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/MyCourses/Index");
         }
     }
 }

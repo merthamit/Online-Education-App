@@ -1,0 +1,103 @@
+﻿@using OnlineEdu.WebUI.DTOs.CourseRegisterDtos
+@model List<ResultCourseRegisterDto>
+@{
+    ViewData["Title"] = "Kayıt Olduğum Kurslar";
+    Layout = "~/Views/UILayout/Layout.cshtml";
+}
+
+
+<main>
+    <div class="slider-area ">
+        <div class="slider-height2 d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap hero-cap2 text-center">
+                            <h2>Kayıt Olduğum Kurslar</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="courses-area section-padding40 fix">
+        <div class="container">
+            @{
+                var enrollStatus = TempData["EnrollStatus"] as string;
+                var enrollCourseName = TempData["EnrollCourseName"] as string;
+                var enrollCourseId = TempData["EnrollCourseId"];
+            }
+            @if (enrollStatus != null)
+            {
+                var (cls, icon, title, text) = enrollStatus switch
+                {
+                    "success" => ("success", "fas fa-check", "Tebrikler, kaydınız tamamlandı!", $"\"{enrollCourseName}\" kursuna başarıyla kayıt oldunuz. Hemen öğrenmeye başlayabilirsiniz."),
+                    "exists" => ("info", "fas fa-info", "Bu kursa zaten kayıtlısınız", $"\"{enrollCourseName}\" kursu zaten listenizde. Kaldığınız yerden devam edebilirsiniz."),
+                    _ => ("error", "fas fa-exclamation", "Kayıt tamamlanamadı", "Kursa kayıt olunurken bir sorun oluştu. Lütfen biraz sonra tekrar deneyin.")
+                };
+                <div class="oe-notice oe-notice-@cls" role="status">
+                    <div class="oe-notice-icon"><i class="@icon"></i></div>
+                    <div class="oe-notice-body">
+                        <h4>@title</h4>
+                        <p>@text</p>
+                        @if (enrollStatus != "error")
+                        {
+                            <div class="oe-notice-actions">
+                                <a href="/Student/CourseRegister/CourseVideos/@enrollCourseId" class="oe-btn"><i class="fas fa-play"></i> Videoları İzle</a>
+                                <a href="/Course/Index" class="oe-notice-link">Başka kurslara göz at</a>
+                            </div>
+                        }
+                    </div>
+                    <button type="button" class="oe-notice-close" aria-label="Kapat" onclick="this.parentElement.classList.add('closing'); setTimeout(() => this.parentElement.remove(), 250);">&times;</button>
+                </div>
+            }
+
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5">
+                    <i class="fas fa-book-open" style="font-size: 64px; color: #ccc;"></i>
+                    <h3 class="mt-4" style="color: #2d2d2d;">Henüz hiçbir kursa kayıt olmadınız</h3>
+                    <p class="mb-4">Kurslarımıza göz atın ve öğrenmeye hemen başlayın.</p>
+                    <a href="/Course/Index" class="btn btn-primary">Kurslara Göz At</a>
+                </div>
+            }
+            else
+            {
+                <p class="mb-5 text-center">Toplam <strong>@ViewBag.TotalCount</strong> kursa kayıtlısınız.</p>
+                <div class="row oe-grid">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="oe-card">
+                                <a href="/Course/CourseDetails/@item.CourseId" class="oe-card-img">
+                                    <img src="@item.Course?.ImageUrl" alt="@item.Course?.CourseName" >
+                                </a>
+                                <div class="oe-card-body">
+                                    <span class="oe-badge">@(item.Course?.Category?.CategoryName)</span>
+                                    <h4 class="oe-card-title">
+                                        <a href="/Course/CourseDetails/@item.CourseId">@item.Course?.CourseName</a>
+                                    </h4>
+                                    <p class="oe-card-teacher">
+                                        <i class="fas fa-user"></i>
+                                        @(item.Course?.AppUser != null ? item.Course.AppUser.FirstName + " " + item.Course.AppUser.LastName : "Eğitmen atanmadı")
+                                    </p>
+                                    <div class="oe-card-footer">
+                                        <span class="oe-card-meta success"><i class="fas fa-check-circle"></i> Kayıtlı</span>
+                                        <a href="/Student/CourseRegister/CourseVideos/@item.CourseId" class="oe-btn">
+                                            <i class="fas fa-play-circle"></i> Videoları İzle
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @await Html.PartialAsync("_Pagination", (PaginationViewModel)ViewBag.Pagination)
+                <div class="text-center mt-4">
+                    <a href="/Course/Index" class="oe-btn-outline">Yeni Kursa Kaydol <i class="fas fa-plus"></i></a>
+                </div>
+            }
+        </div>
+    </div>
+</main>

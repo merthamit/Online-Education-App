@@ -32,8 +32,8 @@
                             @Model.Title
                         </h2>
                         <ul class="blog-info-link mt-3 mb-4">
-                            <li><a href="#"><i class="fa fa-user"></i> @Model.Writer.FirstName @Model.Writer.LastName</a></li>
-                            <li><a href="#"><i class="fa fa-list"></i> @Model.BlogCategory.Name</a></li>
+                            <li><a href="@(Model.WriterId != null ? "/Course/Index?teacher=" + Model.WriterId : "#")"><i class="fa fa-user"></i> @(Model.Writer != null ? Model.Writer.FirstName + " " + Model.Writer.LastName : "Yazar Yok")</a></li>
+                            <li><a href="#"><i class="fa fa-list"></i> @(Model.BlogCategory != null ? Model.BlogCategory.Name : "Kategori Yok")</a></li>
                         </ul>
                         <p class="excert">
                             @Model.Content
@@ -45,211 +45,133 @@
                     </div>
                 </div>
                 <div class="navigation-top">
-                    <div class="d-sm-flex justify-content-between text-center">
-                        <p class="like-info">
-                            <span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-                            people like this
+                    <div class="d-sm-flex justify-content-between align-items-center text-center">
+                        <p class="oe-comment-count mb-0">
+                            <i class="fa fa-comments"></i> @((ViewBag.Comments as List<OnlineEdu.WebUI.DTOs.BlogCommentDtos.ResultBlogCommentDto>)?.Count ?? 0) yorum
                         </p>
-                        <div class="col-sm-4 text-center my-2 my-sm-0">
-                            <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
-                        </div>
-
                         <ul class="social-icons">
-
-                            @foreach (var item in Model.Writer.TeacherSocials)
+                            @foreach (var item in Model.Writer?.TeacherSocials ?? new List<OnlineEdu.WebUI.DTOs.TeacherSocialDtos.ResultTeacherSocialDto>())
                             {
                                 <li><a href="@item.Url" target="_blank"><i class="@item.Icon"></i></a></li>
                             }
-
-
                         </ul>
                     </div>
-                    <div class="navigation-area">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                <div class="thumb">
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/preview.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#">
-                                        <span class="lnr text-white ti-arrow-left"></span>
-                                    </a>
-                                </div>
-                                <div class="detials">
-                                    <p>Prev Post</p>
-                                    <a href="#">
-                                        <h4 style="color: #2d2d2d;">Space The Final Frontier</h4>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                <div class="detials">
-                                    <p>Next Post</p>
-                                    <a href="#">
-                                        <h4 style="color: #2d2d2d;">Telescopes 101</h4>
-                                    </a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#">
-                                        <span class="lnr text-white ti-arrow-right"></span>
-                                    </a>
-                                </div>
-                                <div class="thumb">
-                                    <a href="#">
-                                        <img class="img-fluid" src="assets/img/post/next.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                    @{
+                        var prevBlog = ViewBag.PrevBlog as ResultBlogDto;
+                        var nextBlog = ViewBag.NextBlog as ResultBlogDto;
+                    }
+                    @if (prevBlog != null || nextBlog != null)
+                    {
+                        <div class="oe-post-nav">
+                            @if (prevBlog != null)
+                            {
+                                <a href="/Blog/BlogDetails/@prevBlog.BlogId" class="prev">
+                                    <img src="@prevBlog.ImageUrl" alt="">
+                                    <div>
+                                        <small><i class="ti-arrow-left"></i> Önceki Yazı</small>
+                                        <span class="title">@prevBlog.Title</span>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="placeholder"></div>
+                            }
+                            @if (nextBlog != null)
+                            {
+                                <a href="/Blog/BlogDetails/@nextBlog.BlogId" class="next">
+                                    <img src="@nextBlog.ImageUrl" alt="">
+                                    <div>
+                                        <small>Sonraki Yazı <i class="ti-arrow-right"></i></small>
+                                        <span class="title">@nextBlog.Title</span>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <div class="placeholder"></div>
+                            }
                         </div>
-                    </div>
+                    }
                 </div>
                 <div class="blog-author">
                     <div class="media align-items-center">
-                        <img src="@Model.Writer.ImageUrl" alt="">
+                        <a href="@(Model.WriterId != null ? "/Course/Index?teacher=" + Model.WriterId : "#")"><img src="@(Model.Writer?.ImageUrl ?? "https://cdn-icons-png.flaticon.com/512/6621/6621964.png")" alt=""></a>
                         <div class="media-body">
                             <a href="#">
-                                <h4>@Model.Writer.FirstName @Model.Writer.LastName</h4>
+                                <h4><a href="@(Model.WriterId != null ? "/Course/Index?teacher=" + Model.WriterId : "#")">@(Model.Writer != null ? Model.Writer.FirstName + " " + Model.Writer.LastName : "Yazar Yok")</a></h4>
                             </a>
                             <p>
-                                @Model.Writer.Email
+                                @(Model.Writer != null ? Model.Writer.Email : "")
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="comments-area">
-                    <h4>05 Comments</h4>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="assets/img/comment/comment_1.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="assets/img/comment/comment_2.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
+                    @{
+                        var comments = ViewBag.Comments as List<OnlineEdu.WebUI.DTOs.BlogCommentDtos.ResultBlogCommentDto>;
+                        int count = comments != null ? comments.Count : 0;
+                    }
+                    <h4>@count Yorum</h4>
+                    
+                    @if (comments != null)
+                    {
+                        foreach(var comment in comments)
+                        {
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="desc">
+                                            <p class="comment">
+                                                @comment.Content
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#">@comment.Name</a>
+                                                    </h5>
+                                                    <p class="date">@comment.CommentDate.ToString("dd MMM yyyy HH:mm")</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="comment-list">
-                        <div class="single-comment justify-content-between d-flex">
-                            <div class="user justify-content-between d-flex">
-                                <div class="thumb">
-                                    <img src="assets/img/comment/comment_3.png" alt="">
-                                </div>
-                                <div class="desc">
-                                    <p class="comment">
-                                        Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                        Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                    </p>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex align-items-center">
-                                            <h5>
-                                                <a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <p class="date">December 4, 2017 at 3:12 pm </p>
-                                        </div>
-                                        <div class="reply-btn">
-                                            <a href="#" class="btn-reply text-uppercase">reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        }
+                    }
                 </div>
                 <div class="comment-form">
-                    <h4>Leave a Reply</h4>
-                    <form class="form-contact comment_form" action="#" id="commentForm">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-                                              placeholder="Write Comment"></textarea>
-                                </div>
+                    <h4>Yorum Yap</h4>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var commenterName = User.Claims.FirstOrDefault(x => x.Type == "fullName")?.Value ?? User.Identity.Name;
+                        <p class="mb-3"><i class="fa fa-user"></i> <strong>@commenterName</strong> olarak yorum yapıyorsunuz.</p>
+                        <form class="form-contact comment_form" asp-action="AddComment" asp-controller="Blog" method="post">
+                            <input type="hidden" name="BlogId" value="@Model.BlogId" />
+                            <div class="form-group">
+                                <textarea class="form-control w-100" name="Content" id="comment" cols="30" rows="7"
+                                          placeholder="Yorumunuzu yazın" required></textarea>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-                                </div>
+                            <div class="form-group">
+                                <button type="submit" class="button button-contactForm btn_1 boxed-btn">Yorumu Gönder</button>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-                                </div>
-                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        var returnUrl = Uri.EscapeDataString("/Blog/BlogDetails/" + Model.BlogId);
+                        <div class="alert alert-warning" role="alert" style="padding: 25px;">
+                            <h5 style="color: #856404;"><i class="fa fa-lock"></i> Yorum yapabilmek için üye olmanız gerekiyor</h5>
+                            <p class="mb-3" style="color: #856404;">Bu bloga yorum bırakmak için lütfen üye olun veya hesabınıza giriş yapın.</p>
+                            <a href="/Register/Signup" class="btn btn-primary mr-2">Üye Ol</a>
+                            <a href="/Login/SignIn?returnUrl=@returnUrl" class="btn btn-outline-primary">Giriş Yap</a>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="button button-contactForm btn_1 boxed-btn">Post Comment</button>
-                        </div>
-                    </form>
+                    }
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Search Keyword'
-                                           onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'">
-                                    <div class="input-group-append">
-                                        <button class="btns" type="button"><i class="ti-search"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                                    type="submit">
-                                Search
-                            </button>
-                        </form>
-                    </aside>
+                    <partial name="_BlogSearch" />
                     @await Component.InvokeAsync("_BlogCategoryList")
                     @await Component.InvokeAsync("_BlogRecentBlogs")
 

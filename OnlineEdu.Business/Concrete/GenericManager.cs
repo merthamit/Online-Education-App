@@ -1,4 +1,4 @@
-﻿using OnlineEdu.Business.Abstract;
+using OnlineEdu.Business.Abstract;
 using OnlineEdu.DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
@@ -11,47 +11,47 @@ namespace OnlineEdu.Business.Concrete
 {
     public class GenericManager<T>(IRepository<T> _repository) : IGenericService<T> where T : class
     {
-        public int TCount()
+        public virtual int TCount()
         {
            return _repository.Count();
         }
 
-        public void TCreate(T entity)
+        public virtual void TCreate(T entity)
         {
             _repository.Create(entity);
         }
 
-        public void TDelete(int id)
+        public virtual void TDelete(int id)
         {
             _repository.Delete(id);
         }
 
-        public int TFilteredCount(Expression<Func<T, bool>> predicate)
+        public virtual int TFilteredCount(Expression<Func<T, bool>> predicate)
         {
             return _repository.FilteredCount(predicate);
         }
 
-        public T TGetByFilter(Expression<Func<T, bool>> predicate)
+        public virtual T TGetByFilter(Expression<Func<T, bool>> predicate)
         {
             return _repository.GetByFilter(predicate);
         }
 
-        public T TGetById(int id)
+        public virtual T TGetById(int id)
         {
             return _repository.GetById(id);
         }
 
-        public List<T> TGetFilteredList(Expression<Func<T, bool>> predicate)
+        public virtual List<T> TGetFilteredList(Expression<Func<T, bool>> predicate)
         {
             return _repository.GetFilteredList(predicate);
         }
 
-        public List<T> TGetList()
+        public virtual List<T> TGetList()
         {
             return _repository.GetList();
         }
 
-        public void TUpdate(T entity)
+        public virtual void TUpdate(T entity)
         {
             _repository.Update(entity);
 

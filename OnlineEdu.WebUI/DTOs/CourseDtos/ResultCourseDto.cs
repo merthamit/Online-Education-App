@@ -14,6 +14,10 @@ namespace OnlineEdu.WebUI.DTOs.CourseDtos
         public bool IsShown { get; set; }
 
         public ResultUserDto AppUser { get; set; }
-        public int AppUserId { get; set; }
+        public int? AppUserId { get; set; }
+
+        // API'den ayrı gelen puan özeti (RatingHelper ile doldurulur)
+        public double AverageRating { get; set; }
+        public int ReviewCount { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using OnlineEdu.WebUI.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineEdu.WebUI.DTOs.CourseCategoryDtos;
@@ -70,12 +71,16 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> CreateCourse(CreateCourseDto createCourseDto)
+        public async Task<IActionResult> CreateCourse(CreateCourseDto createCourseDto, IFormFile? imageFile)
         {
+            var uploadedUrl = await _client.UploadImageAsync(imageFile);
+            if (uploadedUrl != null) createCourseDto.ImageUrl = uploadedUrl;
+
             var userId = _tokenService.GetUserId;
             createCourseDto.AppUserId = userId;
             createCourseDto.IsShown = false;
             await _client.PostAsJsonAsync("courses", createCourseDto);
+            TempData["CourseCreated"] = createCourseDto.CourseName;
             return RedirectToAction(nameof(Index));
         }
 
@@ -87,8 +92,11 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCourse(UpdateCourseDto updateCourseDto)
+        public async Task<IActionResult> UpdateCourse(UpdateCourseDto updateCourseDto, IFormFile? imageFile)
         {
+            var uploadedUrl = await _client.UploadImageAsync(imageFile);
+            if (uploadedUrl != null) updateCourseDto.ImageUrl = uploadedUrl;
+
             var userId = _tokenService.GetUserId;
             updateCourseDto.AppUserId = userId;
             await _client.PutAsJsonAsync("courses", updateCourseDto);

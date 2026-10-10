@@ -1,23 +1,24 @@
 ﻿@model CreateCourseDto
 @{
-    ViewData["Title"] = "Course Oluşturma sayfası";
+    ViewData["Title"] = "Yeni Kurs";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<form method="post">
-    <label>Name</label>
+<form method="post" enctype="multipart/form-data">
+    <label>Kurs Adı</label>
     <input type="text" asp-for="CourseName" class="form-control" />
     <span asp-validation-for="CourseName" class="text-danger"></span>
     <br />
 
-    <label>Resim Url</label>
-    <input type="text" asp-for="ImageUrl" class="form-control" />
+    <label>Resim Yükle (Cloudinary üzerinden yayınlanacak)</label>
+    <input type="file" name="imageFile" class="form-control" accept="image/*" />
+    <input type="hidden" asp-for="ImageUrl" value="" />
     <br />
 
-    <label>Price</label>
+    <label>Fiyat (₺)</label>
     <input type="text" asp-for="Price" class="form-control" />
     <br />
 
-    <label>Course Categories</label>
+    <label>Kategori</label>
     <select asp-items="@ViewBag.courseCategories" asp-for="CourseCategoryId" class="form-control">
         <option>Kategori Seçin</option>
     </select>

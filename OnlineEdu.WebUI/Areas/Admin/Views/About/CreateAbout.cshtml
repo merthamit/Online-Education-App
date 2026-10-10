@@ -1,6 +1,6 @@
 ﻿@model CreateAboutDto
 @{
-    ViewData["Title"] = "Hakkımda oluşturma sayfası";
+    ViewData["Title"] = "Yeni Hakkımızda İçeriği";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <form method="post" >
@@ -8,11 +8,11 @@
     <textarea asp-for="Description" class="form-control" rows="5"></textarea>
     <br />
 
-    <label>Resim Url 1</label>
+    <label>Görsel 1 URL</label>
     <input type="text" asp-for="ImageUrl1" class="form-control" />
     <br />
 
-    <label>Resim Url 2</label>
+    <label>Görsel 2 URL</label>
     <input type="text" asp-for="ImageUrl2" class="form-control" />
     <br />
 

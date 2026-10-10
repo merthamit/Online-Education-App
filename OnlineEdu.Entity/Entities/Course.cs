@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,8 @@ namespace OnlineEdu.Entity.Entities
         public int? AppUserId { get; set; }
         public virtual AppUser AppUser { get; set; }
 
-        public virtual List<CourseRegister> CourseRegisters { get; set; }
-        public virtual List<CourseVideo> CourseVideos { get; set; }
+        [JsonIgnore] public virtual List<CourseRegister> CourseRegisters { get; set; }
+        [JsonIgnore] public virtual List<CourseVideo> CourseVideos { get; set; }
+        [JsonIgnore] public virtual List<CourseReview> CourseReviews { get; set; }
     }
 }

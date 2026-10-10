@@ -11,7 +11,7 @@ namespace OnlineEduAPI.Controllers
     [Authorize(Roles = "Admin, Teacher")]
     [Route("api/[controller]")]
     [ApiController]
-    public class BlogsController(IBlogService _blogService, IMapper _mapper) : ControllerBase
+    public class BlogsController(IBlogService _blogService, IMapper _mapper, IImageService _imageService) : ControllerBase
     {
         [AllowAnonymous]
         [HttpGet]
@@ -40,9 +40,13 @@ namespace OnlineEduAPI.Controllers
 
         [HttpDelete("{id}")]
 
-        public IActionResult DeleteById(int id)
+        public async Task<IActionResult> DeleteById(int id)
         {
+            var entity = _blogService.TGetById(id);
+            if (entity == null) return NotFound();
             _blogService.TDelete(id);
+            // CDN temizliği: kayıt silinince görseli de Cloudinary'den sil
+            await _imageService.DeleteImageAsync(entity.ImageUrl);
             return Ok("Blog silindi.");
         }
 
@@ -56,10 +60,14 @@ namespace OnlineEduAPI.Controllers
 
         [HttpPut]
 
-        public IActionResult Update(UpdateBlogDto updateBlogDto)
+        public async Task<IActionResult> Update(UpdateBlogDto updateBlogDto)
         {
             var newValue = _mapper.Map<Blog>(updateBlogDto);
+            var old = _blogService.TGetById(newValue.BlogId);
+            var oldImageUrl = old?.ImageUrl;
             _blogService.TUpdate(newValue);
+            // Görsel değiştiyse eskisini Cloudinary'den sil
+            if (oldImageUrl != newValue.ImageUrl) await _imageService.DeleteImageAsync(oldImageUrl);
             return Ok("Blog güncellendi.");
         }
 

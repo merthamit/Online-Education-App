@@ -1,31 +1,77 @@
 ﻿@model CreateCourseDto
-
 @{
-    ViewData["Title"] = "Yeni kurs oluşturma sayfası";
+    ViewData["Title"] = "Yeni Kurs";
     Layout = "~/Areas/Teacher/Views/TeacherLayout/Index.cshtml";
 }
 
+<form method="post" enctype="multipart/form-data" class="panel-course-form">
+    <div class="row">
+        <div class="col-lg-5 mb-4">
+            <label>Kurs Görseli</label>
+            <label class="panel-dropzone" id="dropzone" for="imageFile">
+                <img id="dzPreview" alt="" style="display:none">
+                <span class="panel-dropzone-empty" id="dzEmpty">
+                    <i class="mdi mdi-cloud-upload"></i>
+                    <strong>Görsel seçmek için tıklayın</strong>
+                    <small>veya buraya sürükleyip bırakın<br>JPG, PNG, WEBP · en fazla 5 MB</small>
+                </span>
+            </label>
+            <input type="file" name="imageFile" id="imageFile" accept="image/png,image/jpeg,image/webp" hidden>
+            <input type="hidden" asp-for="ImageUrl">
+            <small class="text-muted d-block mt-2" id="dzHint">Görsel Cloudinary CDN üzerinden yayınlanır.</small>
+        </div>
+        <div class="col-lg-7">
+            <label asp-for="CourseName">Kurs Adı</label>
+            <input type="text" asp-for="CourseName" class="form-control" placeholder="ör. Sıfırdan Python Programlama" required />
+            <span asp-validation-for="CourseName" class="text-danger"></span>
+            <div style="height:16px"></div>
 
-<form method="post">
-    <label>Name</label>
-    <input type="text" asp-for="CourseName" class="form-control" />
-    <span asp-validation-for="CourseName" class="text-danger"></span>
-    <br />
+            <label asp-for="CourseCategoryId">Kategori</label>
+            <select asp-items="@ViewBag.categories" asp-for="CourseCategoryId" class="form-control" required>
+                <option value="">Kategori seçin</option>
+            </select>
+            <div style="height:16px"></div>
 
-    <label>Resim Url</label>
-    <input type="text" asp-for="ImageUrl" class="form-control" />
-    <br />
+            <label asp-for="Price">Fiyat (₺)</label>
+            <input type="number" min="0" step="0.01" asp-for="Price" class="form-control" placeholder="Ücretsiz kurs için 0 yazın" required />
+            <div style="height:16px"></div>
 
-    <label>Price</label>
-    <input type="text" asp-for="Price" class="form-control" />
-    <br />
+            <div class="panel-info-box">
+                <i class="mdi mdi-information-outline"></i>
+                Yeni kurslar yönetici onayından sonra sitede yayınlanır. Onay beklerken kursunuza video ekleyebilirsiniz.
+            </div>
 
-    <label>Course Categories</label>
-    <select asp-items="@ViewBag.categories" asp-for="CourseCategoryId" class="form-control">
-        <option>Kategori Seçin</option>
-    </select>
-    <br />
-
-    <br />
-    <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+            <button type="submit" class="btn btn-primary"><i class="mdi mdi-plus"></i> Kursu Oluştur</button>
+        </div>
+    </div>
 </form>
+
+<script>
+    (function () {
+        var input = document.getElementById('imageFile');
+        var zone = document.getElementById('dropzone');
+        var preview = document.getElementById('dzPreview');
+        var empty = document.getElementById('dzEmpty');
+        var hint = document.getElementById('dzHint');
+        function show(file) {
+            if (!file) return;
+            if (!/^image\/(png|jpe?g|webp)$/.test(file.type) || file.size > 5 * 1024 * 1024) {
+                hint.innerHTML = '<span class="text-danger">Lütfen en fazla 5 MB boyutunda JPG, PNG veya WEBP görsel seçin.</span>';
+                input.value = '';
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function (e) { preview.src = e.target.result; preview.style.display = 'block'; empty.style.display = 'none'; zone.classList.add('has-image'); };
+            reader.readAsDataURL(file);
+            hint.innerHTML = '<span class="text-success"><i class="mdi mdi-check-circle"></i> Görsel seçildi, kaydettiğinizde yüklenecek.</span>';
+        }
+        input.addEventListener('change', function () { show(input.files[0]); });
+        ['dragenter', 'dragover'].forEach(function (ev) { zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.add('dragging'); }); });
+        ['dragleave', 'drop'].forEach(function (ev) { zone.addEventListener(ev, function (e) { e.preventDefault(); zone.classList.remove('dragging'); }); });
+        zone.addEventListener('drop', function (e) {
+            var file = e.dataTransfer.files[0];
+            if (!file) return;
+            var dt = new DataTransfer(); dt.items.add(file); input.files = dt.files; show(file);
+        });
+    })();
+</script>

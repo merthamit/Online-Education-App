@@ -1,0 +1,103 @@
+﻿@using OnlineEdu.WebUI.DTOs.MessageDtos
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var latestCourses = (List<ResultCourseDto>)ViewBag.LatestCourses;
+    var latestMessages = (List<ResultMessageDto>)ViewBag.LatestMessages;
+}
+
+@if ((int)ViewBag.PendingApplications > 0)
+{
+    <a href="/Admin/TeacherApplication/Index" class="panel-info-box d-flex align-items-center" style="text-decoration:none">
+        <i class="mdi mdi-account-plus"></i>
+        <div class="flex-grow-1"><strong>@ViewBag.PendingApplications yeni eğitmenlik başvurusu</strong> değerlendirmenizi bekliyor.</div>
+        <span class="btn btn-sm btn-outline-info">İncele</span>
+    </a>
+}
+
+<div class="row">
+    <div class="col-md-6 col-lg-4">
+        <a href="/Admin/Course/Index" class="dash-card dash-blue">
+            <div class="dash-icon"><i class="mdi mdi-keyboard"></i></div>
+            <div><div class="dash-value">@ViewBag.CourseCount</div><div class="dash-label">Toplam Kurs</div></div>
+        </a>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <a href="/Admin/StudentList/Index" class="dash-card dash-green">
+            <div class="dash-icon"><i class="mdi mdi-school"></i></div>
+            <div><div class="dash-value">@ViewBag.StudentCount</div><div class="dash-label">Öğrenci</div></div>
+        </a>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <a href="/Admin/TeacherList/Index" class="dash-card dash-purple">
+            <div class="dash-icon"><i class="mdi mdi-account-star"></i></div>
+            <div><div class="dash-value">@ViewBag.TeacherCount</div><div class="dash-label">Eğitmen</div></div>
+        </a>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <a href="/Admin/Blog/Index" class="dash-card dash-orange">
+            <div class="dash-icon"><i class="mdi mdi-newspaper"></i></div>
+            <div><div class="dash-value">@ViewBag.BlogCount</div><div class="dash-label">Blog Yazısı</div></div>
+        </a>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <a href="/Admin/Message/Index" class="dash-card dash-red">
+            <div class="dash-icon"><i class="mdi mdi-comment-text"></i></div>
+            <div><div class="dash-value">@ViewBag.MessageCount</div><div class="dash-label">Gelen Mesaj</div></div>
+        </a>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <a href="/Admin/Subscriber/Index" class="dash-card dash-teal">
+            <div class="dash-icon"><i class="mdi mdi-email-outline"></i></div>
+            <div><div class="dash-value">@ViewBag.SubscriberCount</div><div class="dash-label">Bülten Abonesi</div></div>
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card dash-panel">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title mb-0">Son Eklenen Kurslar</h4>
+                    <a href="/Admin/Course/Index" class="btn btn-sm btn-outline-info">Tümü</a>
+                </div>
+                @foreach (var c in latestCourses)
+                {
+                    <div class="dash-list-item">
+                        <img src="@c.ImageUrl" alt="">
+                        <div class="flex-grow-1">
+                            <a href="/Admin/Course/UpdateCourse/@c.CourseId"><strong>@c.CourseName</strong></a><br />
+                            <small class="text-muted">@(c.Category?.CategoryName) · @(c.AppUser != null ? c.AppUser.FirstName + " " + c.AppUser.LastName : "Eğitmen yok")</small>
+                        </div>
+                        <span class="badge badge-pill @(c.IsShown ? "badge-success" : "badge-secondary")">@(c.IsShown ? "Yayında" : "Gizli")</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card dash-panel">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title mb-0">Son Gelen Mesajlar</h4>
+                    <a href="/Admin/Message/Index" class="btn btn-sm btn-outline-info">Tümü</a>
+                </div>
+                @if (!latestMessages.Any())
+                {
+                    <p class="text-muted mt-3">Henüz mesaj yok.</p>
+                }
+                @foreach (var m in latestMessages)
+                {
+                    <div class="dash-list-item">
+                        <div class="dash-avatar">@(string.IsNullOrEmpty(m.Name) ? "?" : m.Name.Substring(0, 1).ToUpper())</div>
+                        <div class="flex-grow-1" style="min-width:0;">
+                            <a href="/Admin/Message/MessageDetail/@m.MessageId"><strong>@m.Subject</strong></a><br />
+                            <small class="text-muted text-truncate d-block">@m.Name · @m.Email</small>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,8 @@ namespace OnlineEduAPI.Extensions
 
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IBlogService, BlogManager>();
+            services.AddScoped<IBlogCommentRepository, BlogCommentRepository>();
+            services.AddScoped<IBlogCommentService, BlogCommentManager>();
 
             services.AddScoped<ICourseCategoryRepository, CourseCategoryRepository>();
             services.AddScoped<ICourseCategoryService, CourseCategoryManager>();
@@ -35,6 +37,10 @@ namespace OnlineEduAPI.Extensions
 
 
             services.AddScoped<IJwtService, JwtService>();
+
+            // CDN: görseller Cloudinary üzerinden yüklenip CDN URL'i ile sunulur
+            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+            services.AddScoped<IImageService, CloudinaryImageManager>();
         }
     }
 }

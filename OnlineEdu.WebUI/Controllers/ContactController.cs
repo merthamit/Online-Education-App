@@ -13,23 +13,24 @@ namespace OnlineEdu.WebUI.Controllers
         {
             _client = clientFactory.CreateClient("EduClient");
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var values = await _client.GetFromJsonAsync<List<ResultContactDto>>("contact");
+            ViewBag.map = values?.Select(x => x.MapUrl).FirstOrDefault();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(CreateContactDto model)
+        public async Task<IActionResult> SendMessage(OnlineEdu.WebUI.DTOs.MessageDtos.CreateMessageDto model)
         {
-            await _client.PostAsJsonAsync<CreateContactDto>("messages", model);
-            return NoContent();
+            var response = await _client.PostAsJsonAsync("messages", model);
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["MessageSent"] = "true";
+            }
+            return RedirectToAction("Index");
         }
 
-        public async Task<PartialViewResult> ContactMap()
-        {
-            var values = await _client.GetFromJsonAsync<List<ResultContactDto>>("contact");
-            ViewBag.map = values.Select(x => x.MapUrl).FirstOrDefault();
-            return PartialView();
-        }
+
     }
 }

@@ -1,0 +1,185 @@
+﻿@model OnlineEdu.WebUI.DTOs.UserDtos.UpdateProfileDto
+@{
+    ViewData["Title"] = "Profil Ayarları";
+    Layout = "~/Views/UILayout/Layout.cshtml";
+    var role = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role)?.Value;
+    var roleName = role switch { "Admin" => "Yönetici", "Teacher" => "Eğitmen", _ => "Öğrenci" };
+    var initials = string.Concat($"{Model?.FirstName} {Model?.LastName}".Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => char.ToUpper(x[0])));
+    var hasPhoto = !string.IsNullOrEmpty(Model?.ImageUrl);
+}
+
+<div class="slider-area">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="hero-cap hero-cap2 text-center">
+                <h2>Profil Ayarları</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="oe-profile">
+    <div class="container">
+        @if (ViewBag.Success != null)
+        {
+            <div class="oe-notice oe-notice-success" role="status">
+                <div class="oe-notice-icon"><i class="fas fa-check"></i></div>
+                <div class="oe-notice-body"><h4>Kaydedildi</h4><p>@ViewBag.Success</p></div>
+                <button type="button" class="oe-notice-close" aria-label="Kapat" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+        }
+        @if (ViewBag.Error != null)
+        {
+            <div class="oe-notice oe-notice-error" role="alert">
+                <div class="oe-notice-icon"><i class="fas fa-exclamation"></i></div>
+                <div class="oe-notice-body"><h4>Kaydedilemedi</h4><p>@ViewBag.Error</p></div>
+                <button type="button" class="oe-notice-close" aria-label="Kapat" onclick="this.parentElement.remove()">&times;</button>
+            </div>
+        }
+
+        <form method="post" enctype="multipart/form-data" class="oe-profile-grid">
+            <!-- Profil fotoğrafı -->
+            <aside class="oe-profile-card">
+                <label class="oe-avatar-drop @(hasPhoto ? "has-photo" : "")" id="avatarDrop" for="photoInput" title="Fotoğraf seçmek için tıklayın veya sürükleyip bırakın">
+                    <img id="avatarPreview" src="@(Model?.ImageUrl)" alt="Profil fotoğrafı" style="@(hasPhoto ? "" : "display:none")">
+                    <span class="oe-avatar-initials" id="avatarInitials" style="@(hasPhoto ? "display:none" : "")">@initials</span>
+                    <span class="oe-avatar-overlay"><i class="fas fa-camera"></i><small>Fotoğrafı değiştir</small></span>
+                </label>
+                <input type="file" name="photo" id="photoInput" accept="image/png,image/jpeg,image/webp" hidden>
+                <input type="hidden" name="removePhoto" id="removePhoto" value="false">
+
+                <h4>@Model?.FirstName @Model?.LastName</h4>
+                <span class="oe-badge">@roleName</span>
+
+                <p class="oe-avatar-hint" id="avatarHint">Fotoğrafı tıklayarak seçin ya da buraya sürükleyin.<br><small>JPG, PNG veya WEBP · en fazla 5 MB</small></p>
+                <div class="oe-avatar-actions">
+                    <label for="photoInput" class="oe-btn oe-btn-sm"><i class="fas fa-upload"></i> Fotoğraf Yükle</label>
+                    <button type="button" class="oe-link-danger" id="removePhotoBtn" style="@(hasPhoto ? "" : "display:none")"><i class="far fa-trash-alt"></i> Kaldır</button>
+                </div>
+            </aside>
+
+            <!-- Bilgiler -->
+            <div class="oe-profile-main">
+                <div class="oe-profile-section">
+                    <h5><i class="fas fa-user-circle"></i> Kişisel Bilgiler</h5>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="oe-field">
+                                <label asp-for="FirstName">Ad</label>
+                                <div class="oe-input"><i class="fas fa-user"></i><input asp-for="FirstName" required></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="oe-field">
+                                <label asp-for="LastName">Soyad</label>
+                                <div class="oe-input"><i class="fas fa-user"></i><input asp-for="LastName" required></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe-field mb-0">
+                        <label asp-for="Email">E-posta</label>
+                        <div class="oe-input"><i class="fas fa-envelope"></i><input asp-for="Email" type="email" required></div>
+                    </div>
+                </div>
+
+                <div class="oe-profile-section">
+                    <h5><i class="fas fa-key"></i> Şifre Değiştir <small>(isteğe bağlı)</small></h5>
+                    <p class="oe-section-hint">Şifrenizi değiştirmek istemiyorsanız bu alanları boş bırakın.</p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="oe-field">
+                                <label asp-for="CurrentPassword">Mevcut Şifre</label>
+                                <div class="oe-input">
+                                    <i class="fas fa-lock"></i>
+                                    <input asp-for="CurrentPassword" type="password" placeholder="Mevcut şifreniz" autocomplete="current-password" value="">
+                                    <button type="button" class="oe-toggle-pw" aria-label="Şifreyi göster"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="oe-field">
+                                <label asp-for="NewPassword">Yeni Şifre</label>
+                                <div class="oe-input">
+                                    <i class="fas fa-lock"></i>
+                                    <input asp-for="NewPassword" type="password" placeholder="Yeni şifreniz" autocomplete="new-password" value="" data-password-rules="pwRules">
+                                    <button type="button" class="oe-toggle-pw" aria-label="Şifreyi göster"><i class="far fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="oe-pw-rules" id="pwRules">
+                        <li data-rule="length">En az 6 karakter</li>
+                        <li data-rule="upper">Bir büyük harf</li>
+                        <li data-rule="lower">Bir küçük harf</li>
+                        <li data-rule="digit">Bir rakam</li>
+                        <li data-rule="special">Bir özel karakter</li>
+                    </ul>
+                </div>
+
+                <div class="oe-profile-footer">
+                    <button type="submit" class="oe-btn oe-auth-submit"><i class="fas fa-save"></i> Değişiklikleri Kaydet</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="~/js/auth.js" asp-append-version="true"></script>
+<script>
+    // Profil fotoğrafı: seç / sürükle-bırak, anında önizleme, kaldır
+    (function () {
+        var input = document.getElementById('photoInput');
+        var drop = document.getElementById('avatarDrop');
+        var preview = document.getElementById('avatarPreview');
+        var initials = document.getElementById('avatarInitials');
+        var hint = document.getElementById('avatarHint');
+        var removeBtn = document.getElementById('removePhotoBtn');
+        var removeField = document.getElementById('removePhoto');
+
+        function showFile(file) {
+            if (!file) return;
+            if (!/^image\/(png|jpe?g|webp)$/.test(file.type)) { hint.innerHTML = '<span class="text-danger">Lütfen JPG, PNG veya WEBP formatında bir görsel seçin.</span>'; input.value = ''; return; }
+            if (file.size > 5 * 1024 * 1024) { hint.innerHTML = '<span class="text-danger">Görsel en fazla 5 MB olabilir.</span>'; input.value = ''; return; }
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = '';
+                initials.style.display = 'none';
+                drop.classList.add('has-photo', 'changed');
+                removeBtn.style.display = '';
+                removeField.value = 'false';
+                hint.innerHTML = '<span class="text-success"><i class="fas fa-check-circle"></i> "' + file.name.replace(/[<>&"]/g, '') + '" seçildi.</span><br><small>Kaydetmek için "Değişiklikleri Kaydet"e basın.</small>';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        input.addEventListener('change', function () { showFile(input.files[0]); });
+
+        ['dragenter', 'dragover'].forEach(function (ev) {
+            drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('dragging'); });
+        });
+        ['dragleave', 'drop'].forEach(function (ev) {
+            drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('dragging'); });
+        });
+        drop.addEventListener('drop', function (e) {
+            var file = e.dataTransfer.files[0];
+            if (!file) return;
+            var dt = new DataTransfer();
+            dt.items.add(file);
+            input.files = dt.files;
+            showFile(file);
+        });
+
+        removeBtn.addEventListener('click', function () {
+            input.value = '';
+            preview.style.display = 'none';
+            preview.removeAttribute('src');
+            initials.style.display = '';
+            drop.classList.remove('has-photo');
+            drop.classList.add('changed');
+            removeBtn.style.display = 'none';
+            removeField.value = 'true';
+            hint.innerHTML = '<span class="text-warning">Fotoğraf kaldırılacak.</span><br><small>Onaylamak için "Değişiklikleri Kaydet"e basın.</small>';
+        });
+    })();
+</script>

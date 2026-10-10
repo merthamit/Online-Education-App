@@ -1,18 +1,18 @@
 ﻿@model CreateSocialMediaDto
 @{
-    ViewData["Title"] = "Social Media Oluşturma sayfası";
+    ViewData["Title"] = "Yeni Sosyal Medya Hesabı";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <form method="post">
-    <label>Title</label>
+    <label>Başlık</label>
     <input type="text" asp-for="Title" class="form-control"/>
     <br />
 
-    <label>Icon</label>
+    <label>İkon (Font Awesome sınıfı, ör. fab fa-twitter)</label>
     <input type="text" asp-for="Icon" class="form-control" />
     <br />
 
-    <label>Url</label>
+    <label>Bağlantı (URL)</label>
     <input type="text" asp-for="Url" class="form-control" />
     <br />
 

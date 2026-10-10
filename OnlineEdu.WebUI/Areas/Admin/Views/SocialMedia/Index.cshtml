@@ -1,6 +1,6 @@
 ﻿@model List<ResultSocialMediaDto>
 @{
-    ViewData["Title"] = "Social Media Page";
+    ViewData["Title"] = "Sosyal Medya";
     Layout = "_AdminLayout";
 }
 @{
@@ -10,9 +10,9 @@
     <tr>
 
         <th>#</th>
-        <th>Title</th>
-        <th>Icon</th>
-        <th>Url</th>
+        <th>Başlık</th>
+        <th>İkon</th>
+        <th>Bağlantı</th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -25,14 +25,14 @@
             <th>@item.Url</th>
             <td>
                 <button onclick="deleteSocialMedia(@item.SocialMediaId)" class="btn btn-outline-danger">Sil</button>
-                <a asp-action="UpdateSocialMedia" asp-controller="SocialMedia" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.SocialMediaId">Güncelle</a>
+                <a asp-action="UpdateSocialMedia" asp-controller="SocialMedia" asp-area="Admin" class="btn btn-outline-info" asp-route-id="@item.SocialMediaId">Güncelle</a>
             </td>
         </tr>
     }
 </table>
 
 <br />
-<a asp-action="CreateSocialMedia" asp-controller="SocialMedia" asp-area="Admin" class="btn btn-outline-primary">Yeni Social Media Ekle</a>
+<a asp-action="CreateSocialMedia" asp-controller="SocialMedia" asp-area="Admin" class="btn btn-outline-primary">Yeni Sosyal Medya Ekle</a>
 <script>
 
     function deleteSocialMedia(id){

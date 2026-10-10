@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        @await Html.PartialAsync("ContactMap")
+        
 
 
         <div class="row">
@@ -41,3 +41,18 @@
 
 </section>
 
+
+@if (TempData["MessageSent"] != null)
+{
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: "Mesajınız Gönderildi",
+                text: "Size en kısa sürede cevap verilecektir.",
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Tamam"
+            });
+        });
+    </script>
+}

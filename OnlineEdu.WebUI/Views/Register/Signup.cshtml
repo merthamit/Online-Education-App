@@ -1,102 +1,91 @@
-﻿@model UserRegisterDto
+@model UserRegisterDto
 @{
+    ViewData["Title"] = "Kayıt Ol";
     Layout = "~/Views/UILayout/Layout.cshtml";
 }
 
+<section class="oe-auth">
+    <div class="container">
+        <div class="oe-auth-card">
+            <div class="oe-auth-side">
+                <h2>OnlineEdu'ya katılın</h2>
+                <p>Ücretsiz hesabınızı oluşturun, kurslara kayıt olun ve kendi hızınızda öğrenmeye başlayın.</p>
+                <ul class="oe-auth-benefits">
+                    <li><i class="fas fa-check-circle"></i> Uzman eğitmenlerden kurslar</li>
+                    <li><i class="fas fa-check-circle"></i> Dilediğiniz zaman, dilediğiniz cihazdan erişim</li>
+                    <li><i class="fas fa-check-circle"></i> Blog yazılarına yorum yapabilme</li>
+                </ul>
+                <img src="~/login-form-07/images/undraw_remotely_2j6y.svg" alt="" class="oe-auth-illustration">
+            </div>
 
-<!doctype html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+            <div class="oe-auth-form">
+                <h3>Kayıt Ol</h3>
+                <p class="oe-auth-sub">Zaten hesabınız var mı? <a href="/Login/SignIn">Giriş yapın</a></p>
 
-    <link rel="stylesheet" href="~/login-form-07/fonts/icomoon/style.css">
+                <form method="post" novalidate>
+                    <div asp-validation-summary="ModelOnly" class="oe-auth-alert"></div>
 
-    <link rel="stylesheet" href="~/login-form-07/css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/login-form-07/css/bootstrap.min.css">
-
-    <!-- Style -->
-    <link rel="stylesheet" href="~/login-form-07/css/style.css">
-
-    <title>Online Edu Kullanıcı Kayıt Sayfası</title>
-</head>
-<body>
-
-
-
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="~/login-form-07/images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
-                </div>
-                <div class="col-md-6 contents">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="mb-4">
-                                <h3>Kayıt Ol</h3>
-                                <p class="mb-4">Ücretsiz kurslarımıza kayıt olmak için aşağıdaki kayıt formunu doldurun.</p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="oe-field">
+                                <label asp-for="FirstName">Ad</label>
+                                <div class="oe-input"><i class="fas fa-user"></i><input asp-for="FirstName" placeholder="Adınız" autocomplete="given-name"></div>
+                                <span asp-validation-for="FirstName" class="oe-field-error"></span>
                             </div>
-                            <form method="post">
-                                <div class="form-group first">
-                                    <label for="username">Ad</label>
-                                    <input type="text" asp-for="FirstName" class="form-control" required>
-                                </div>
-                                <div class="form-group first">
-                                    <label for="username">Soyad</label>
-                                    <input type="text" asp-for="LastName" class="form-control" required>
-                                </div>
-                                <div class="form-group first">
-                                    <label for="username">Email</label>
-                                    <input type="email" asp-for="Email" class="form-control" required>
-                                </div>
-                                <div class="form-group first">
-                                    <label for="username">Kullanıcı Adı</label>
-                                    <input type="text" asp-for="UserName" class="form-control" required>
-
-                                </div>
-                                <div class="form-group last mb-4">
-                                    <label for="password">Şifre</label>
-                                    <input type="password" asp-for="Password" class="form-control" id="password" required>
-
-                                </div>
-                                <div class="form-group last mb-4">
-                                    <label for="password">Şifreyi Tekrar Girin</label>
-                                    <input type="password" asp-for="ConfirmPassword" class="form-control" id="password" required>
-
-                                </div>
-
-                                <p style="color:red">
-                                    @Html.ValidationSummary()
-                                </p>
-                                <input type="submit" value="Kayıt Ol" class="btn btn-block btn-primary">
-
-
-                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="oe-field">
+                                <label asp-for="LastName">Soyad</label>
+                                <div class="oe-input"><i class="fas fa-user"></i><input asp-for="LastName" placeholder="Soyadınız" autocomplete="family-name"></div>
+                                <span asp-validation-for="LastName" class="oe-field-error"></span>
+                            </div>
                         </div>
                     </div>
 
-                </div>
+                    <div class="oe-field">
+                        <label asp-for="Email">E-posta</label>
+                        <div class="oe-input"><i class="fas fa-envelope"></i><input asp-for="Email" type="email" placeholder="ornek@mail.com" autocomplete="email"></div>
+                        <span asp-validation-for="Email" class="oe-field-error"></span>
+                    </div>
 
+                    <div class="oe-field">
+                        <label asp-for="UserName">Kullanıcı Adı</label>
+                        <div class="oe-input"><i class="fas fa-at"></i><input asp-for="UserName" placeholder="ornek: ahmet.yilmaz" autocomplete="username"></div>
+                        <span asp-validation-for="UserName" class="oe-field-error"></span>
+                    </div>
+
+                    <div class="oe-field">
+                        <label asp-for="Password">Şifre</label>
+                        <div class="oe-input">
+                            <i class="fas fa-lock"></i>
+                            <input asp-for="Password" type="password" placeholder="Şifrenizi belirleyin" autocomplete="new-password" data-password-rules="pwRules">
+                            <button type="button" class="oe-toggle-pw" aria-label="Şifreyi göster"><i class="far fa-eye"></i></button>
+                        </div>
+                        <span asp-validation-for="Password" class="oe-field-error"></span>
+                        <ul class="oe-pw-rules" id="pwRules">
+                            <li data-rule="length">En az 6 karakter</li>
+                            <li data-rule="upper">Bir büyük harf</li>
+                            <li data-rule="lower">Bir küçük harf</li>
+                            <li data-rule="digit">Bir rakam</li>
+                            <li data-rule="special">Bir özel karakter (! * ? @@ gibi)</li>
+                        </ul>
+                    </div>
+
+                    <div class="oe-field">
+                        <label asp-for="ConfirmPassword">Şifre Tekrarı</label>
+                        <div class="oe-input">
+                            <i class="fas fa-lock"></i>
+                            <input asp-for="ConfirmPassword" type="password" placeholder="Şifrenizi tekrar girin" autocomplete="new-password" data-match="Password">
+                            <button type="button" class="oe-toggle-pw" aria-label="Şifreyi göster"><i class="far fa-eye"></i></button>
+                        </div>
+                        <span asp-validation-for="ConfirmPassword" class="oe-field-error"></span>
+                        <span class="oe-match-hint" id="matchHint"></span>
+                    </div>
+
+                    <button type="submit" class="oe-btn oe-auth-submit">Hesabımı Oluştur <i class="fas fa-arrow-right"></i></button>
+                </form>
             </div>
         </div>
     </div>
-
-
-    <script src="~/login-form-07/js/jquery-3.3.1.min.js"></script>
-    <script src="~/login-form-07/js/popper.min.js"></script>
-    <script src="~/login-form-07/js/bootstrap.min.js"></script>
-    <script src="~/login-form-07/js/main.js"></script>
-</body>
-</html>
-
-
-
-
-
-
-
+</section>
+<script src="~/js/auth.js" asp-append-version="true"></script>

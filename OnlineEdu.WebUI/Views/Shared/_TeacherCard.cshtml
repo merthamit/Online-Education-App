@@ -1,0 +1,20 @@
+﻿@model ResultUserDto
+<div class="oe-teacher-card">
+    <a href="/Course/Index?teacher=@Model.Id" class="oe-teacher-photo">
+        <img src="@(Model.ImageUrl ?? "https://cdn-icons-png.flaticon.com/512/6621/6621964.png")" alt="@Model.FirstName @Model.LastName" loading="lazy">
+    </a>
+    <div class="oe-teacher-card-body">
+        <h4><a href="/Course/Index?teacher=@Model.Id">@Model.FirstName @Model.LastName</a></h4>
+        <span class="oe-teacher-role">Eğitmen</span>
+        @if (Model.TeacherSocials != null && Model.TeacherSocials.Any())
+        {
+            <div class="oe-teacher-socials">
+                @foreach (var social in Model.TeacherSocials)
+                {
+                    <a href="@social.Url" target="_blank" rel="noopener" title="@social.SocialMediaName"><i class="@social.Icon"></i></a>
+                }
+            </div>
+        }
+        <a href="/Course/Index?teacher=@Model.Id" class="oe-teacher-link">Kurslarını gör <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>

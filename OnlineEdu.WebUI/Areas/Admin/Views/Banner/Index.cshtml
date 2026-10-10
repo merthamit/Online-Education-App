@@ -1,6 +1,6 @@
 ﻿@model List<ResulBannerDto>
 @{
-    ViewData["Title"] = "Banner Page";
+    ViewData["Title"] = "Bannerlar";
     Layout = "_AdminLayout";
 }
 @{
@@ -10,8 +10,8 @@
     <tr>
 
         <th>#</th>
-        <th>Image</th>
-        <th>Title</th>
+        <th>Görsel</th>
+        <th>Başlık</th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -23,7 +23,7 @@
             <th>@item.Title</th>
             <td>
                 <a asp-action="DeleteBanner" asp-controller="Banner" asp-area="Admin" class="btn btn-outline-danger" asp-route-id="@item.BannerId">Sil</a>
-                <a asp-action="UpdateBanner" asp-controller="Banner" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.BannerId">Güncelle</a>
+                <a asp-action="UpdateBanner" asp-controller="Banner" asp-area="Admin" class="btn btn-outline-info" asp-route-id="@item.BannerId">Güncelle</a>
             </td>
         </tr>
     }

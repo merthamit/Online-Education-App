@@ -1,51 +1,21 @@
 ﻿@model List<ResultUserDto>
 
-<div class="team-area pt-160 pb-160 section-bg" data-background="/onlineedu-master/assets/img/gallery/section_bg02.png">
+<section class="oe-team-section">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="cl-xl-7 col-lg-8 col-md-10">
-                <!-- Section Tittle -->
-                <div class="section-tittle section-tittle2 text-center mb-70">
-                    <span>Eğitmenlerimiz</span>
-                    <h2>Alanında Uzman Eğitim Kadromuz</h2>
-                </div>
-            </div>
+        <div class="text-center mb-5">
+            <span class="oe-eyebrow">Eğitmenlerimiz</span>
+            <h2 class="oe-section-title">Alanında uzman eğitim kadromuz</h2>
         </div>
-        <div class="row">
+        <div class="row oe-grid">
             @foreach (var item in Model)
             {
-
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-team mb-30">
-                        <div class="team-img">
-
-                            <img src="@(item.ImageUrl ?? "https://cdn-icons-png.flaticon.com/512/6621/6621964.png")" alt="">
-                            <!-- Blog Social -->
-                            <ul class="team-social">
-                                @foreach (var social in item.TeacherSocials)
-                                {
-
-                                    <li><a href="@social.Url"><i class="@social.Icon"></i></a></li>
-                                }
-
-                            </ul>
-                        </div>
-                        <div class="team-caption">
-                            <h3><a href="#">@item.FirstName @item.LastName</a></h3>
-                            <p>Eğitmen</p>
-                        </div>
-                    </div>
+                <div class="col-lg-3 col-md-6">
+                    <partial name="_TeacherCard" model="item" />
                 </div>
             }
-
         </div>
-        <!-- Section Button -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="browse-btn2 text-center mt-70">
-                    <a href="/Teacher/Index" class="btn white-btn">Tüm Eğitmenleri Gör</a>
-                </div>
-            </div>
+        <div class="text-center mt-3">
+            <a href="/Teacher/Index" class="oe-btn-outline">Tüm Eğitmenleri Gör <i class="fas fa-arrow-right"></i></a>
         </div>
     </div>
-</div>
+</section>

@@ -1,0 +1,47 @@
+@model ResultAboutDto
+@{
+    var showMore = ViewData["ShowMore"] as bool? ?? false;
+    var features = new[]
+    {
+        (Icon: "fas fa-chalkboard-teacher", Text: Model.Item1),
+        (Icon: "fas fa-infinity", Text: Model.Item2),
+        (Icon: "fas fa-certificate", Text: Model.Item3),
+        (Icon: "fas fa-headset", Text: Model.Item4)
+    };
+}
+<div class="oe-about">
+    <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="oe-about-collage">
+                <img src="@Model.ImageUrl1" alt="Öğrenciler birlikte çalışıyor" class="oe-about-main" loading="lazy">
+                <img src="@Model.ImageUrl2" alt="Sınıf ortamı" class="oe-about-small" loading="lazy">
+                <div class="oe-about-badge">
+                    <i class="fas fa-award"></i>
+                    <div><strong>%100</strong><span>Online Eğitim</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="oe-about-text">
+                <span class="oe-eyebrow">Hakkımızda</span>
+                <h2>Öğrenmeyi herkes için erişilebilir kılıyoruz</h2>
+                <p>@Model.Description</p>
+                <div class="row">
+                    @foreach (var f in features.Where(x => !string.IsNullOrWhiteSpace(x.Text)))
+                    {
+                        <div class="col-sm-6">
+                            <div class="oe-feature">
+                                <span class="oe-feature-icon"><i class="@f.Icon"></i></span>
+                                <span>@f.Text</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @if (showMore)
+                {
+                    <a href="/About/Index" class="oe-btn mt-3">Daha Fazlası <i class="fas fa-arrow-right"></i></a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+# Gizli ayarlar
+.env
+*.env.local
+appsettings.*.local.json
+
+# .NET derleme çıktıları
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+.vscode/
+.idea/
+*.swp
+
+# Test / geçici dosyalar
+TestResults/
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

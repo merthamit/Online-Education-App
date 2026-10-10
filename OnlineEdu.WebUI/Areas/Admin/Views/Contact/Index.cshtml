@@ -1,6 +1,6 @@
 ﻿@model List<ResultContactDto>
 @{
-    ViewData["Title"] = "Blog Page";
+    ViewData["Title"] = "İletişim Bilgisi";
     Layout = "_AdminLayout";
 }
 @{
@@ -10,9 +10,9 @@
     <tr>
 
         <th>#</th>
-        <th>MapUrl</th>
-        <th>Address</th>
-        <th>Phone</th>
+        <th>Harita</th>
+        <th>Adres</th>
+        <th>Telefon</th>
         <th>Email</th>
         <th></th>
     </tr>
@@ -21,20 +21,20 @@
         count++;
         <tr>
             <th>@count</th>
-            <th>@item.MapUrl</th>
+            <td><a href="@item.MapUrl" target="_blank" rel="noopener" class="btn btn-sm btn-outline-secondary"><i class="mdi mdi-map-marker"></i> Haritayı Aç</a></td>
             <th>@item.Address</th>
             <th>@item.Phone</th>
             <th>@item.Email</th>
             <td>
                 <button onclick="deleteContact(@item.ContactId)" class="btn btn-outline-danger">Sil</button>
-                <a asp-action="UpdateContact" asp-controller="Contact" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.ContactId">Güncelle</a>
+                <a asp-action="UpdateContact" asp-controller="Contact" asp-area="Admin" class="btn btn-outline-info" asp-route-id="@item.ContactId">Güncelle</a>
             </td>
         </tr>
     }
 </table>
 
 <br />
-<a asp-action="CreateContact" asp-controller="Contact" asp-area="Admin" class="btn btn-outline-primary">Yeni Hakkımda Ekle</a>
+<a asp-action="CreateContact" asp-controller="Contact" asp-area="Admin" class="btn btn-outline-primary">Yeni İletişim Bilgisi Ekle</a>
 <script>
 
     function deleteContact(id){

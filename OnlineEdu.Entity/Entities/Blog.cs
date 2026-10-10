@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,5 +18,6 @@ namespace OnlineEdu.Entity.Entities
         public virtual BlogCategory BlogCategory { get; set; }
         public int? WriterId { get; set; }
         public virtual AppUser Writer { get; set; }
+        [JsonIgnore] public virtual List<BlogComment> BlogComments { get; set; }
     }
 }

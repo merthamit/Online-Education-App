@@ -1,0 +1,124 @@
+﻿@model OnlineEdu.WebUI.DTOs.CourseDtos.ResultCourseDto
+@{
+    var reviews = (ViewBag.Reviews as List<CourseReviewDto>) ?? new List<CourseReviewDto>();
+    var myReview = ViewBag.MyReview as CourseReviewDto;
+    var isEnrolled = ViewBag.IsEnrolled == true;
+    var isStudent = User.IsInRole("Student");
+    var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+    var reviewMessage = TempData["ReviewMessage"] as string;
+    var reviewOk = TempData["ReviewOk"] as bool? ?? true;
+}
+
+<section class="oe-reviews" id="degerlendirmeler">
+    <h3 class="oe-reviews-title">Öğrenci Değerlendirmeleri</h3>
+
+    @if (reviewMessage != null)
+    {
+        <div class="oe-review-alert @(reviewOk ? "ok" : "bad")">
+            <i class="fas @(reviewOk ? "fa-check-circle" : "fa-exclamation-circle")"></i> @reviewMessage
+        </div>
+    }
+
+    <div class="oe-review-summary">
+        <div class="oe-review-score">
+            <strong>@(Model.ReviewCount > 0 ? Model.AverageRating.ToString("0.0") : "–")</strong>
+            <partial name="_Stars" model="Model.AverageRating" />
+            <span>@Model.ReviewCount değerlendirme</span>
+        </div>
+        <div class="oe-review-bars">
+            @for (int star = 5; star >= 1; star--)
+            {
+                var count = reviews.Count(x => x.Rating == star);
+                var percent = reviews.Count > 0 ? count * 100 / reviews.Count : 0;
+                <div class="oe-review-bar">
+                    <span>@star <i class="fas fa-star"></i></span>
+                    <div class="oe-bar"><div style="width:@percent%"></div></div>
+                    <span class="oe-bar-count">@count</span>
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (isStudent && isEnrolled)
+    {
+        <form method="post" action="/Course/Review" class="oe-review-form">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="courseId" value="@Model.CourseId">
+            <h5>@(myReview != null ? "Değerlendirmenizi güncelleyin" : "Bu kursu değerlendirin")</h5>
+            <div class="oe-star-input" role="radiogroup" aria-label="Puanınız">
+                @for (int i = 5; i >= 1; i--)
+                {
+                    <input type="radio" name="rating" id="star@(i)" value="@i" checked="@(myReview?.Rating == i)" required>
+                    <label for="star@(i)" title="@i yıldız"><i class="fas fa-star"></i></label>
+                }
+                <span class="oe-star-text" id="starText">@(myReview != null ? $"{myReview.Rating} / 5" : "Puan seçin")</span>
+            </div>
+            <textarea name="comment" maxlength="1000" rows="3" placeholder="Kurs hakkındaki düşüncelerinizi paylaşın (isteğe bağlı)">@myReview?.Comment</textarea>
+            <button type="submit" class="oe-btn"><i class="fas fa-paper-plane"></i> @(myReview != null ? "Güncelle" : "Değerlendirmeyi Gönder")</button>
+        </form>
+    }
+    else if (isStudent)
+    {
+        <div class="oe-review-info"><i class="fas fa-info-circle"></i> Bu kursu değerlendirebilmek için önce kursa kayıt olmalısınız.</div>
+    }
+    else if (!User.Identity!.IsAuthenticated)
+    {
+        <div class="oe-review-info"><i class="fas fa-info-circle"></i> Değerlendirme yapmak için <a href="/Login/SignIn?returnUrl=@Uri.EscapeDataString("/Course/CourseDetails/" + Model.CourseId)">giriş yapın</a> ve kursa kayıt olun.</div>
+    }
+
+    @if (!reviews.Any())
+    {
+        <div class="oe-review-empty">
+            <i class="far fa-comment-dots"></i>
+            <p>Bu kurs henüz değerlendirilmedi. İlk değerlendirmeyi siz yapın!</p>
+        </div>
+    }
+    else
+    {
+        <div class="oe-review-list">
+            @foreach (var r in reviews)
+            {
+                var initials = string.Concat(r.UserFullName.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => char.ToUpper(x[0])));
+                <div class="oe-review-item">
+                    @if (!string.IsNullOrEmpty(r.UserImageUrl))
+                    {
+                        <img src="@r.UserImageUrl" alt="@r.UserFullName" class="oe-review-avatar">
+                    }
+                    else
+                    {
+                        <span class="oe-review-avatar oe-review-initials">@initials</span>
+                    }
+                    <div class="oe-review-body">
+                        <div class="oe-review-head">
+                            <strong>@r.UserFullName</strong>
+                            <partial name="_Stars" model="(double)r.Rating" />
+                            <small>@r.CreatedAt.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("tr-TR"))</small>
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(r.Comment))
+                        {
+                            <p>@r.Comment</p>
+                        }
+                        @if (r.AppUserId.ToString() == currentUserId || User.IsInRole("Admin"))
+                        {
+                            <form method="post" action="/Course/DeleteReview" class="d-inline" onsubmit="return confirm('Bu değerlendirmeyi silmek istediğinize emin misiniz?');">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@r.CourseReviewId">
+                                <input type="hidden" name="courseId" value="@Model.CourseId">
+                                <button type="submit" class="oe-review-delete"><i class="far fa-trash-alt"></i> Sil</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</section>
+
+<script>
+    document.querySelectorAll('.oe-star-input input').forEach(function (input) {
+        input.addEventListener('change', function () {
+            var labels = { 1: 'Kötü', 2: 'Vasat', 3: 'İyi', 4: 'Çok iyi', 5: 'Mükemmel' };
+            document.getElementById('starText').textContent = input.value + ' / 5 · ' + labels[input.value];
+        });
+    });
+</script>

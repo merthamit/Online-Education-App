@@ -1,17 +1,17 @@
 ﻿@model List<ResultAboutDto>
 @{
-    ViewData["Title"] = "Hakkımda Sayfası";  
+    ViewData["Title"] = "Hakkımızda";  
     Layout = "_AdminLayout";
 }
 @{
     int count = 0;
 }
-<table class="table table-hover">
+<div class="table-responsive"><table class="table table-hover">
     <tr>
 
         <th>#</th>
-        <th>Resim1</th>
-        <th>Resim2</th>
+        <th>Görsel 1</th>
+        <th>Görsel 2</th>
         <th>Açıklama</th>
         <th>Madde 1</th>
         <th>Madde 2</th>
@@ -33,11 +33,11 @@
             <th>@item.Item4</th>
             <td>
                 <a asp-action="DeleteAbout" asp-controller="About" asp-area="Admin" class="btn btn-outline-danger" asp-route-id="@item.AboutId">Sil</a>
-                <a asp-action="UpdateAbout" asp-controller="About" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.AboutId">Güncelle</a>
+                <a asp-action="UpdateAbout" asp-controller="About" asp-area="Admin" class="btn btn-outline-info" asp-route-id="@item.AboutId">Güncelle</a>
             </td>
         </tr>
     }
-</table>
+</table></div>
 
 <br />
 <a asp-action="CreateAbout" asp-controller="About" asp-area="Admin" class="btn btn-outline-primary">Yeni Hakkımda Ekle</a>

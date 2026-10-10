@@ -1,6 +1,6 @@
 ﻿@model List<ResultCourseCategoryDto>
 @{
-    ViewData["Title"] = "Course Category Page";
+    ViewData["Title"] = "Kurs Kategorileri";
     Layout = "_AdminLayout";
 }
 @{
@@ -10,9 +10,9 @@
     <tr>
 
         <th>#</th>
-        <th>Category Name</th>
-        <th>Description</th>
-        <th>Is Shown</th>
+        <th>Kategori Adı</th>
+        <th>Açıklama</th>
+        <th>Durum</th>
         <th></th>
         <th></th>
     </tr>
@@ -26,18 +26,18 @@
             <th>@(item.IsShown ? "Gösteriliyor" : "Gösterilmiyor")</th>
             <td>
                 <button onclick="deleteCourseCategory(@item.CourseCategoryId)" class="btn btn-outline-danger">Sil</button>
-                <a asp-action="UpdateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.CourseCategoryId">Güncelle</a>
+                <a asp-action="UpdateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-info" asp-route-id="@item.CourseCategoryId">Güncelle</a>
             </td>
             <td>
-                <a asp-action="ShowOnHome" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-success" asp-route-id=@item.CourseCategoryId">Göster</a>
-                <a asp-action="DontShowOnHome" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-secondary" asp-route-id=@item.CourseCategoryId">Gösterme</a>
+                <a asp-action="ShowOnHome" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-success" asp-route-id="@item.CourseCategoryId">Göster</a>
+                <a asp-action="DontShowOnHome" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-secondary" asp-route-id="@item.CourseCategoryId">Gösterme</a>
             </td>
         </tr>
     }
 </table>
 
 <br />
-<a asp-action="CreateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-primary">Yeni Hakkımda Ekle</a>
+<a asp-action="CreateCourseCategory" asp-controller="CourseCategory" asp-area="Admin" class="btn btn-outline-primary">Yeni Kurs Kategorisi Ekle</a>
 <script>
 
     function deleteCourseCategory(id){

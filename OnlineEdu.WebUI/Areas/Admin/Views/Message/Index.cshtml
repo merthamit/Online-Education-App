@@ -1,6 +1,6 @@
 ﻿@model List<ResultMessageDto>
 @{
-    ViewData["Title"] = "Message Page";
+    ViewData["Title"] = "Gelen Mesajlar";
     Layout = "_AdminLayout";
 }
 @{
@@ -10,9 +10,9 @@
     <tr>
 
         <th>#</th>
-        <th>Name</th>
+        <th>Ad Soyad</th>
         <th>Email</th>
-        <th>Subject</th>
+        <th>Konu</th>
         <th></th>
     </tr>
     @foreach (var item in Model)
@@ -25,15 +25,15 @@
             <th>@item.Subject</th>
             <td>
                 <button onclick="deleteMessage(@item.MessageId)" class="btn btn-outline-danger">Sil</button>
-                <a asp-action="UpdateMessage" asp-controller="Message" asp-area="Admin" class="btn btn-outline-info" asp-route-id=@item.MessageId">Güncelle</a>
-                <a asp-action="MessageDetail" asp-controller="Message" asp-area="Admin" class="btn btn-outline-primary" asp-route-id=@item.MessageId">Göster</a>
+                <a asp-action="UpdateMessage" asp-controller="Message" asp-area="Admin" class="btn btn-outline-info" asp-route-id="@item.MessageId">Güncelle</a>
+                <a asp-action="MessageDetail" asp-controller="Message" asp-area="Admin" class="btn btn-outline-primary" asp-route-id="@item.MessageId">Göster</a>
             </td>
         </tr>
     }
 </table>
 
 <br />
-<a asp-action="CreateMessage" asp-controller="Message" asp-area="Admin" class="btn btn-outline-primary">Yeni Message Ekle</a>
+<a asp-action="CreateMessage" asp-controller="Message" asp-area="Admin" class="btn btn-outline-primary">Yeni Mesaj Ekle</a>
 <script>
 
     function deleteMessage(id){

@@ -1,83 +1,139 @@
-# 🎓 OnlineEdu Projesi
+# 🎓 OnlineEdu — Online Eğitim Platformu
 
-ASP.NET Core 8.0 ile geliştirilmiş **N Katmanlı Mimariye sahip Eğitim Platformu**.  
-Proje kapsamında **Admin, Öğretmen ve Öğrenci panelleri** geliştirilmiş, kullanıcı kimlik doğrulama ve yetkilendirme işlemleri **Identity & Jwt Token** ile yapılmıştır.  
+ASP.NET Core 8 ile geliştirilmiş, **N-Katmanlı mimaride** gevşek bağlı bir online eğitim platformu.
+Web API + MVC arayüzünden oluşur; **Redis** dağıtık önbellek, **RabbitMQ** asenkron mesajlaşma, **Cloudinary CDN** medya dağıtımı ve **Docker** ile konteynerize edilmiş bir geliştirme ortamı içerir.
 
----
-
-## 🚀 Kullanılan Teknolojiler
-- **ASP.NET Core 8.0** (Web API & MVC)  
-- **Entity Framework Core** (Code First yaklaşımı)  
-- **SQL Server**  
-- **LINQ**  
-- **AutoMapper**  
-- **FluentValidation**  
-- **HTML, CSS, JavaScript, Bootstrap**  
-- **Identity** (Kullanıcı, rol, yetkilendirme)  
-- **Jwt Bearer Authentication**  
-- **Dependency Injection**  
-- **HttpClient & Named HttpClient**  
+**Kullanılan teknolojiler:** C# · .NET 8 · ASP.NET Core Web API & MVC · Entity Framework Core · SQL Server · Microsoft Identity · JWT · Redis · RabbitMQ (MassTransit) · Cloudinary CDN · Docker
 
 ---
 
-## ⚙️ Teknik Özellikler
-- **N Katmanlı Mimari Yapısı**  
-- **Repository & Generic Repository Tasarım Deseni**  
-- **Generic Service & Manager Yapısı**  
-- **DTO kullanımı** (UI ile API arasında veri transferi)  
-- **AutoMapper ile nesne eşleme**  
-- **Identity ile kullanıcı ve rol işlemleri**  
-- **Jwt Token tabanlı Authentication & Authorization**  
-- **Çoklu Alan (Area) yapısı** (Admin, Teacher, Student, vs.)  
-- **ViewComponent kullanımı**  
-- **Lazy Loading (EF Core)**  
+## 🏗️ Mimari
+
+```
+┌──────────────┐   HTTP + JWT   ┌──────────────────────────────────────────────┐
+│ OnlineEdu.   │ ─────────────▶ │ OnlineEduAPI (ASP.NET Core Web API)          │
+│ WebUI (MVC)  │                │  ├─ OnlineEdu.Business   (servis/manager)    │
+└──────────────┘                │  ├─ OnlineEdu.DataAccess (EF Core, repository)│
+                                │  ├─ OnlineEdu.Entity     (varlıklar)          │
+                                │  └─ OnlineEdu.DTO        (veri transfer)      │
+                                └───────┬──────────┬──────────┬────────────────┘
+                                        │          │          │
+                                  SQL Server     Redis     RabbitMQ ──▶ SendEmailConsumer
+                                                              Cloudinary CDN (görseller)
+```
+
+| Katman | Görev |
+|---|---|
+| **Entity** | Veritabanı varlıkları (Course, Blog, CourseReview, TeacherApplication…) |
+| **DataAccess** | EF Core `DbContext`, generic repository, migration'lar |
+| **Business** | Generic manager/servisler, Redis önbellekleme, Cloudinary servisi |
+| **DTO** | API ile istemci arasındaki veri modelleri |
+| **OnlineEduAPI** | REST API, JWT doğrulama, Identity, MassTransit (RabbitMQ) |
+| **OnlineEdu.WebUI** | MVC arayüzü: site, Admin / Eğitmen / Öğrenci panelleri |
 
 ---
 
-## 🌟 Sitenin Öne Çıkan Özellikleri
-- **Admin Paneli, Öğretmen Paneli ve Öğrenci Paneli**  
-- **Identity ile kayıt olma ve giriş yapma**  
-- **Roller & Yetkilendirme** ile erişim kısıtlamaları  
-- **CRUD İşlemleri** (Blog, Kurs, Kategori, Banner, Mesaj, Abonelik vb.)  
-- **Şifremi Unuttum özelliği**  
-- **Arama işlemleri**  
-- **Token bilgisi üzerinden kullanıcı kimliği okuma**  
+## ⚡ Altyapı Kullanımı
+
+### Redis — dağıtık önbellek
+- Kurs listesi ve kurs kategorileri
+- Blog listeleri (son 4 blog dahil)
+- Kurs puan özetleri (ortalama puan + değerlendirme sayısı)
+- Herkese açık istatistikler (5 dk)
+- Ekleme / güncelleme / silme işlemlerinde ilgili önbellek otomatik temizlenir
+
+### RabbitMQ — asenkron olaylar (MassTransit)
+`SendEmailCommand` olayları kuyruğa atılır, `SendEmailConsumer` arka planda işler:
+- Yeni üyeye hoş geldin e-postası
+- Kursa kayıt onay e-postası
+- İletişim formu mesajı alındı bildirimi
+- Yeni eğitmenlik başvurusunda yöneticilere bildirim
+- Başvuru onay / ret sonucu e-postası
+
+### Cloudinary — CDN
+- Kurs, blog ve profil fotoğrafları Cloudinary'ye yüklenir ve CDN adresiyle sunulur
+- Kayıt silindiğinde veya görsel değiştirildiğinde eski görsel Cloudinary'den de silinir
 
 ---
 
-## 🛠️ Admin Paneli Özellikleri
-- İstatistikleri görme  
-- Profil düzenleme işlemleri  
-- Haber, Blog, Kurs gibi tüm içeriklerde **CRUD işlemleri**  
-- Menü ve alt menü isimlerini değiştirebilme  
-- Kullanıcılara **rol atama ve yetkilendirme**  
+## 🌟 Özellikler
+
+**Ziyaretçi & Öğrenci**
+- Kayıt / giriş (Identity + JWT), canlı şifre kuralları, Türkçe hata mesajları
+- Kurs listesi: arama, kategori, fiyat, **puan filtresi**, sıralama — sayfa yenilenmeden (AJAX)
+- Kurs detayı, kursa kayıt, **Kayıt Olduğum Kurslar** sayfası, kurs videoları
+- Kurslara **1–5 yıldız puan ve yorum** (sadece kayıtlı öğrenciler)
+- **Eğitmenlik başvurusu** ve başvuru durumu takibi
+- Blog, blog arama, yorum (sadece üyeler), önceki/sonraki yazı
+- Eğitmen sayfaları (eğitmenin kursları), profil ayarları ve **profil fotoğrafı yükleme**
+
+**Eğitmen Paneli**
+- Kurs açma (sürükle-bırak görsel yükleme), kurs videoları, blog yazıları, sosyal medya hesapları
+- Kendi eğitmen sayfasında "Kurs Aç" ve onay bekleyen kurs bilgisi
+
+**Admin Paneli ("Mert Admin")**
+- Dashboard: istatistik kartları, son kurslar ve mesajlar, bekleyen başvuru uyarısı
+- Tüm içerik için CRUD: kurs, kategori, blog, banner, hakkımızda, referans, sosyal medya…
+- Kullanıcı & rol yönetimi, **eğitmenlik başvurularını onaylama / reddetme**
+- Panel içi arama paleti (`/` kısayolu), hızlı ekleme menüsü, breadcrumb
+
+**Güvenlik**
+- Rol tabanlı yetkilendirme (Admin / Teacher / Student), JWT ile korunan API
+- Kullanıcılar yalnızca kendi profillerini görüntüleyip güncelleyebilir
+- Kimlik bilgileri (şifre hash'i vb.) API yanıtlarında dışarı verilmez
+- Gizli ayarlar koddan ayrı tutulur (`.env`)
 
 ---
 
-## 👨‍🏫 Öğretmen Paneli Özellikleri
-- Kendi kurslarını yönetebilme (CRUD)  
-- Kurslara video ekleyebilme  
-- Sosyal medya linkleri ekleyebilme  
-- Profil düzenleme işlemleri  
+## 🐳 Kurulum ve Çalıştırma
+
+**Gereksinimler:** Docker Desktop
+
+```bash
+git clone <repo-adresi>
+cd Online-Education-App-main
+cp .env.example .env      # .env içine kendi Cloudinary bilgilerinizi ve şifrelerinizi girin
+docker compose up -d --build
+```
+
+| Servis | Adres |
+|---|---|
+| Web arayüzü | http://localhost:5001 |
+| API (Swagger) | http://localhost:5000/swagger |
+| RabbitMQ yönetim paneli | http://localhost:15672 (guest / guest) |
+| Redis | localhost:6379 |
+| SQL Server | localhost,1433 |
+
+API ilk açılışta migration'ları uygular, rolleri ve admin hesabını oluşturur.
+
+### Demo verisi (isteğe bağlı)
+Siteyi eğitmen, öğrenci, kurs, blog, değerlendirme vb. örnek verilerle doldurmak için:
+
+```bash
+pip install requests
+python scripts/seed_demo_data.py
+```
+
+### Demo hesapları
+| Rol | E-posta | Şifre |
+|---|---|---|
+| Admin | admin@admin.com | Admin123! |
+| Eğitmen | ogretmen@test.com | Test123!* |
+| Öğrenci | ogrenci@test.com | Test123!* |
+
+> Eğitmen ve öğrenci hesapları demo verisi betiğiyle oluşturulur. Bu hesaplar yalnızca yerel geliştirme içindir.
 
 ---
 
-## 👨‍🎓 Öğrenci Paneli Özellikleri
-- Kurs kayıt olma & kursları görüntüleme  
-- İstatistikleri görme  
-- Profil düzenleme işlemleri  
-- **CV yükleme & güncelleme işlemleri**  
+## 📁 Proje Yapısı
 
----
-
-
-![Screenshot_10](https://github.com/user-attachments/assets/4afa4ea9-e88b-4612-a272-1815a77a4515)
-![Screenshot_9](https://github.com/user-attachments/assets/71441628-5d26-4e04-aa07-8e75cd15610d)
-![Screenshot_8](https://github.com/user-attachments/assets/e8cded9e-8b5e-4a38-ab20-286301d07057)
-![Screenshot_7](https://github.com/user-attachments/assets/2bbd95a1-e65a-46d7-99bf-444676c282da)
-![Screenshot_6](https://github.com/user-attachments/assets/c9a1c9f6-6246-4c78-b399-56817b9a7dae)
-![Screenshot_5](https://github.com/user-attachments/assets/1568df7f-341f-4ca8-8f0a-3e7ce619133c)
-![Screenshot_4](https://github.com/user-attachments/assets/2693aa3a-a6cc-4ddf-b7df-e9e4c44304e6)
-![Screenshot_3](https://github.com/user-attachments/assets/810bba71-1b42-4fe1-bb44-73fbf73d5b7f)
-![Screenshot_2](https://github.com/user-attachments/assets/323aa4e8-2ebe-4a4a-967f-a54321bfc51a)
-![Screenshot_1](https://github.com/user-attachments/assets/365256e6-732f-4ee5-86eb-7dbb2449fbf3)
+```
+OnlineEdu.Entity/        Varlıklar
+OnlineEdu.DataAccess/    DbContext, repository'ler, migration'lar
+OnlineEdu.Business/      Servisler, Redis önbellekleme, Cloudinary
+OnlineEdu.DTO/           DTO'lar
+OnlineEduAPI/            Web API, controller'lar, RabbitMQ consumer
+OnlineEdu.WebUI/         MVC arayüzü ve paneller
+scripts/                 Demo verisi betiği
+docker-compose.yml       SQL Server, Redis, RabbitMQ, API, WebUI
+```

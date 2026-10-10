@@ -1,0 +1,115 @@
+﻿@model OnlineEdu.WebUI.DTOs.CourseDtos.ResultCourseDto
+@{
+    ViewData["Title"] = "Kurs Detayı";
+    Layout = "~/Views/UILayout/Layout.cshtml";
+}
+
+<div class="slider-area ">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="hero-cap hero-cap2 text-center">
+                        <h2>@Model.CourseName</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="@Model.ImageUrl" alt="" style="width: 100%; object-fit: cover; border-radius: 10px;">
+                    </div>
+                    <div class="blog_details">
+                        <h2>@Model.CourseName</h2>
+                        <ul class="blog-info-link mt-3 mb-4">
+                            <li><a href="#"><i class="fa fa-list"></i> Kategori: <strong>@Model.Category?.CategoryName</strong></a></li>
+                            <li><a href="#"><i class="fa fa-tag"></i> Fiyat: <strong>@Model.Price ₺</strong></a></li>
+                        </ul>
+                        <p class="excert">
+                            @Model.CourseName kursuna hoş geldiniz! Bu kurs ile kendinizi bir adım öne taşıyabilirsiniz. 
+                            Satın alım işlemlerini gerçekleştirmek için lütfen Kayıt Ol butonunu kullanın.
+                        </p>
+                        
+                        <div class="mt-5">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <div class="alert alert-info">Bu kursa kayıt olabilmek için giriş yapmanız gerekiyor.</div>
+                                <a href="/Login/SignIn?returnUrl=@Uri.EscapeDataString("/Course/CourseDetails/" + Model.CourseId)" class="btn btn-primary btn-lg w-100" style="padding: 15px; font-size: 18px;">
+                                    Giriş Yap ve Kayıt Ol
+                                </a>
+                            }
+                            else if (User.IsInRole("Student"))
+                            {
+                                if (ViewBag.IsEnrolled == true)
+                                {
+                                    <div class="alert alert-success"><i class="fas fa-check-circle"></i> Bu kursa kayıtlısınız.</div>
+                                    <a href="/MyCourses/Index" class="btn btn-primary btn-lg w-100" style="padding: 15px; font-size: 18px;">
+                                        Kayıt Olduğum Kurslara Git
+                                    </a>
+                                }
+                                else
+                                {
+                                    <form method="post" action="/MyCourses/Enroll/@Model.CourseId">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-primary btn-lg w-100" style="padding: 15px; font-size: 18px;">
+                                            Kursa Kayıt Ol
+                                        </button>
+                                    </form>
+                                }
+                            }
+                            else
+                            {
+                                <div class="alert alert-secondary">Kurslara yalnızca öğrenci hesapları kayıt olabilir.</div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <partial name="_CourseReviews" model="Model" />
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title" style="color: #2d2d2d;">Kurs Bilgileri</h4>
+                        <ul class="list cat-list">
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Ücret</p>
+                                    <p style="margin-left:auto;">@Model.Price ₺</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#degerlendirmeler" class="d-flex align-items-center">
+                                    <p>Puan</p>
+                                    <p style="margin-left:auto;">
+                                        @if (Model.ReviewCount > 0)
+                                        {
+                                            <strong>@Model.AverageRating.ToString("0.0")</strong> <partial name="_Stars" model="Model.AverageRating" /> <small>(@Model.ReviewCount)</small>
+                                        }
+                                        else
+                                        {
+                                            <span>Henüz puan yok</span>
+                                        }
+                                    </p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>Kategori</p>
+                                    <p style="margin-left:auto;">@Model.Category?.CategoryName</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

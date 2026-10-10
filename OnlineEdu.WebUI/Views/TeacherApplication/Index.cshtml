@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Eğitmen Ol";
+    Layout = "~/Views/UILayout/Layout.cshtml";
+    var app = ViewBag.Application as TeacherApplicationDto;
+    var tr = new System.Globalization.CultureInfo("tr-TR");
+    var showForm = app == null || app.Status == "Rejected";
+}
+
+<div class="slider-area">
+    <div class="slider-height2 d-flex align-items-center">
+        <div class="container">
+            <div class="hero-cap hero-cap2 text-center"><h2>Eğitmen Ol</h2></div>
+        </div>
+    </div>
+</div>
+
+<section class="oe-profile">
+    <div class="container">
+        <div class="oe-apply-grid">
+            <aside class="oe-apply-side">
+                <h3>Bilginizi paylaşın, öğretmeye başlayın</h3>
+                <p>OnlineEdu'da eğitmen olarak kendi kurslarınızı açabilir, videolar ekleyebilir ve blog yazıları yayınlayabilirsiniz.</p>
+                <ol class="oe-steps">
+                    <li><span>1</span><div><strong>Başvurunuzu gönderin</strong><small>Uzmanlık alanınızı ve deneyiminizi anlatın.</small></div></li>
+                    <li><span>2</span><div><strong>Yönetici değerlendirir</strong><small>Sonucu e-posta ile bildiririz.</small></div></li>
+                    <li><span>3</span><div><strong>Kurs açmaya başlayın</strong><small>Onaydan sonra eğitmen paneliniz açılır.</small></div></li>
+                </ol>
+            </aside>
+
+            <div>
+                @if (TempData["ApplicationSent"] != null)
+                {
+                    <div class="oe-notice oe-notice-success" role="status">
+                        <div class="oe-notice-icon"><i class="fas fa-check"></i></div>
+                        <div class="oe-notice-body"><h4>Başvurunuz alındı!</h4><p>En kısa sürede değerlendirip sonucu e-posta adresinize bildireceğiz.</p></div>
+                    </div>
+                }
+
+                @if (ViewBag.Error != null)
+                {
+                    <div class="oe-auth-alert">@ViewBag.Error</div>
+                }
+
+                @if (app != null)
+                {
+                    var (cls, icon, title, text) = app.Status switch
+                    {
+                        "Approved" => ("approved", "fas fa-check-circle", "Başvurunuz onaylandı 🎉", "Artık eğitmensiniz! Eğitmen panelinizin açılması için çıkış yapıp tekrar giriş yapın."),
+                        "Rejected" => ("rejected", "fas fa-times-circle", "Başvurunuz onaylanmadı", "Aşağıdaki formu kullanarak bilgilerinizi güncelleyip tekrar başvurabilirsiniz."),
+                        _ => ("pending", "fas fa-hourglass-half", "Başvurunuz değerlendiriliyor", "Başvurunuz yöneticiye iletildi. Sonuçlandığında e-posta ile bilgilendirileceksiniz.")
+                    };
+                    <div class="oe-app-status oe-app-@cls">
+                        <i class="@icon"></i>
+                        <div>
+                            <h4>@title</h4>
+                            <p>@text</p>
+                            <small>Başvuru tarihi: @app.CreatedAt.ToString("dd MMMM yyyy HH:mm", tr) · Uzmanlık: @app.Expertise</small>
+                            @if (!string.IsNullOrWhiteSpace(app.AdminNote))
+                            {
+                                <div class="oe-app-note"><strong>Yönetici notu:</strong> @app.AdminNote</div>
+                            }
+                            @if (app.Status == "Approved")
+                            {
+                                <a href="/Login/Logout" class="oe-btn mt-3"><i class="fas fa-sign-in-alt"></i> Çıkış Yap ve Tekrar Giriş Yap</a>
+                            }
+                        </div>
+                    </div>
+                }
+
+                @if (showForm)
+                {
+                    <form method="post" class="oe-profile-section">
+                        <h5><i class="fas fa-chalkboard-teacher"></i> Eğitmenlik Başvuru Formu</h5>
+                        <div class="oe-field">
+                            <label for="expertise">Uzmanlık Alanınız</label>
+                            <div class="oe-input"><i class="fas fa-graduation-cap"></i><input id="expertise" name="expertise" maxlength="200" required placeholder="ör. Web Geliştirme, Veri Bilimi, UI/UX Tasarım" value="@ViewBag.Expertise"></div>
+                        </div>
+                        <div class="oe-field">
+                            <label for="motivation">Kendinizi Tanıtın</label>
+                            <textarea id="motivation" name="motivation" class="oe-textarea" rows="6" minlength="30" maxlength="2000" required placeholder="Deneyiminizden, hangi konularda kurs açmak istediğinizden ve neden eğitmen olmak istediğinizden bahsedin.">@ViewBag.Motivation</textarea>
+                            <small class="oe-char-count"><span id="charCount">0</span> / 2000 (en az 30 karakter)</small>
+                        </div>
+                        <div class="oe-field">
+                            <label for="portfolioUrl">Portfolyo / LinkedIn (isteğe bağlı)</label>
+                            <div class="oe-input"><i class="fas fa-link"></i><input id="portfolioUrl" name="portfolioUrl" type="url" placeholder="https://linkedin.com/in/kullaniciadi" value="@ViewBag.PortfolioUrl"></div>
+                        </div>
+                        <button type="submit" class="oe-btn oe-auth-submit"><i class="fas fa-paper-plane"></i> Başvuruyu Gönder</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    (function () {
+        var t = document.getElementById('motivation'), c = document.getElementById('charCount');
+        if (!t || !c) return;
+        function u() { c.textContent = t.value.length; c.parentElement.classList.toggle('ok', t.value.trim().length >= 30); }
+        t.addEventListener('input', u); u();
+    })();
+</script>

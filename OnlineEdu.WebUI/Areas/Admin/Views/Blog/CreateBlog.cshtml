@@ -1,10 +1,10 @@
 ﻿@model CreateBlogDto
 @{
-    ViewData["Title"] = "Blog Oluşturma sayfası";
+    ViewData["Title"] = "Yeni Blog Yazısı";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<form method="post">
-    <label>Name</label>
+<form method="post" enctype="multipart/form-data">
+    <label>Başlık</label>
     <input type="text" asp-for="Title" class="form-control" />
     <span asp-validation-for="Title" class="text-danger"></span>
     <br />
@@ -13,11 +13,13 @@
     <textarea asp-for="Content" class="form-control" rows="5"></textarea>
     <br />
 
-    <label>Resim Url</label>
+    <label>Görsel URL</label>
     <input type="text" asp-for="ImageUrl" class="form-control" />
+    <small class="text-muted d-block mt-1">Bir görsel adresi girin veya aşağıdan bilgisayarınızdan yükleyin (Cloudinary CDN'e yüklenir).</small>
+    <input type="file" name="imageFile" class="form-control mt-2" accept="image/*" />
     <br />
     
-    <label>Blog Categories</label>
+    <label>Kategori</label>
     <select asp-items="@ViewBag.categories" asp-for="BlogCategoryId" class="form-control"> 
         <option>Kategori Seçin</option>
     </select>

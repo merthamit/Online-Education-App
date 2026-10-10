@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.DTO.DTOs.UserDtos;
 using OnlineEdu.Entity.Entities;
-using OnlineEdu.WebUI.Models;
+
 using System.Security.Claims;
 
 namespace OnlineEduAPI.Controllers
@@ -42,6 +42,10 @@ namespace OnlineEduAPI.Controllers
         public async Task<IActionResult> GetUserForRoleAssign(int id)
         {
             var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound("Kullanıcı bulunamadı.");
+            }
 
             var roles = await _roleManager.Roles.ToListAsync();
 
@@ -68,6 +72,10 @@ namespace OnlineEduAPI.Controllers
             int userId = assignRoleList.Select(x => x.UserId).FirstOrDefault();
 
             var user = await _userService.GetUserByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound("Kullanıcı bulunamadı.");
+            }
 
             foreach (var item in assignRoleList)
             {

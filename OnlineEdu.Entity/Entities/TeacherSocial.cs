@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,6 @@ namespace OnlineEdu.Entity.Entities
         public string Icon { get; set; }
 
         public int TeacherId { get; set; }
-        public virtual AppUser Teacher {  get; set; }
+        [JsonIgnore] public virtual AppUser Teacher {  get; set; }
     }
 }

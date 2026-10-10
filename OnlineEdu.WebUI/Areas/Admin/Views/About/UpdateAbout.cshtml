@@ -1,6 +1,6 @@
 ﻿@model UpdateAboutDto
 @{
-    ViewData["Title"] = "Hakkımda Güncelleme";
+    ViewData["Title"] = "Hakkımızda İçeriğini Düzenle";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -9,11 +9,11 @@
     <textarea asp-for="Description" class="form-control" rows="5"></textarea>
     <br />
     <input type="hidden" asp-for="AboutId" />
-    <label>Resim Url 1</label>
+    <label>Görsel 1 URL</label>
     <input type="text" asp-for="ImageUrl1" class="form-control" />
     <br />
 
-    <label>Resim Url 2</label>
+    <label>Görsel 2 URL</label>
     <input type="text" asp-for="ImageUrl2" class="form-control" />
     <br />
 
